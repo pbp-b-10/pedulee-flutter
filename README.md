@@ -1,6 +1,6 @@
 # PEDULEE - B10
 Ghayda Rafa Hernawan - 2106634332 <br />
-Daffa Muhammad Faizan - 2106704156
+Daffa Muhammad Faizan - 2106704156 <br />
 Rakhan Yusuf Rivesa - 2106751852 <br />
 Alvin Widi Nugroho - 2106751902 <br />
 Marietha Asnat Nauli Sitompul - 2106752413 <br />
