@@ -6,7 +6,7 @@ Rakhan Yusuf Rivesa - 2106751852 <br />
 Daffa Muhammad Faizan - 2106704156
 
 ## CERITA APLIKASI
-Sebuah platform yang menerima donasi dalam berbagai bentuk, seperti pakaian bekas layak pakai, dana atau uang, darah, sembako, dan lain sebaginya, untuk membantu isu-isu kemanusiaan yang berkaitan dengan G20. Beberapa isu terkait di antaranya seperti Agriculture and Food Security (donasi uang dan sembako), Climate Sustainability and Energy (donasi pakaian bekas layak pakai), Global Health (donor darah), Strong, Sustainable, Balanced and Inclusive Growth (volunteering). <br />
+Sebuah platform yang menerima donasi dalam berbagai bentuk yaitu pakaian bekas layak pakai, dana atau uang, donor darah, serta sembako. Selain itu, platform Pedulee juga menyalurkan sukarelawan ke berbagai kegiatan yang dapat diakses pada fitur _volunteering_. Penerimaan donasi dan kegiatan sukarela ini dilaksanakan untuk membantu isu-isu kemanusiaan yang berkaitan dengan G20. Donasi pakaian bekas layak pakai berkaitan dengan isu Climate Sustainability and Energy; donasi uang dan sembako berkaitan dengan isu Agriculture and Food Security; donor darah berkaitan dengan isu Global Health; dan _volunteering_ berkaitan dengan isu Strong, Sustainable, Balanced and Inclusive Growth. <br />
 
 ## DAFTAR MODUL (Fitur)
 **1. Main Page (Halaman Utama)** <br />
