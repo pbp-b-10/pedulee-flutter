@@ -11,7 +11,9 @@ class MoneyDonationPage extends StatefulWidget {
 class _MoneyDonationPageState extends State<MoneyDonationPage> {
     final _formKey = GlobalKey<FormState>();
     String fullName = "";
-    double age = 0;
+    String email = "";
+    String phoneNumber = "";
+    String ccNumber = "";
     String paymentMethod = 'A';
     List<String> listPaymentMethod = ['A', 'B', 'C', 'D', 'E', 'F', 'KI'];
 
@@ -63,6 +65,72 @@ class _MoneyDonationPageState extends State<MoneyDonationPage> {
                                     },
                                 ),
                             ),
+                            Padding(
+                                // Menggunakan padding sebesar 8 pixels
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextFormField(
+                                    decoration: InputDecoration(
+                                        hintText: "cicakbinkadal@cs.ui.ac.id",
+                                        labelText: "Email",
+                                        // Menambahkan circular border agar lebih rapi
+                                        border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(5.0),
+                                        ),
+                                    ),
+                                    // Menambahkan behavior saat nama diketik 
+                                    onChanged: (String? value) {
+                                        setState(() {
+                                            email = value!;
+                                        });
+                                    },
+                                    // Menambahkan behavior saat data disimpan
+                                    onSaved: (String? value) {
+                                        setState(() {
+                                            email = value!;
+                                        });
+                                    },
+                                    // Validator sebagai validasi form
+                                    validator: (String? value) {
+                                        if (value == null || value.isEmpty) {
+                                            return "Your email can't be empty!";
+                                        }
+                                        return null;
+                                    },
+                                ),
+                            ),
+                            Padding(
+                              // Menggunakan padding sebesar 8 pixels
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                  decoration: InputDecoration(
+                                      hintText: "+6281212341234",
+                                      labelText: "Phone Number",
+                                      // Menambahkan circular border agar lebih rapi
+                                      border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(5.0),
+                                      ),
+                                  ),
+                                  // Menambahkan behavior saat nama diketik 
+                                  onChanged: (String? value) {
+                                      setState(() {
+                                          phoneNumber = value!;
+                                      });
+                                  },
+                                  // Menambahkan behavior saat data disimpan
+                                  onSaved: (String? value) {
+                                      setState(() {
+                                          phoneNumber = value!;
+                                      });
+                                  },
+                                  // Validator sebagai validasi form
+                                  validator: (String? value) {
+                                      if (value == null || value.isEmpty) {
+                                          return "Your Phone Number can't be empty!";
+                                      }
+                                      return null;
+                                  },
+                              ),
+                            ),
                             ListTile(
                               leading: const Icon(Icons.credit_card),
                               title: const Text('Payment Method'),
@@ -79,6 +147,39 @@ class _MoneyDonationPageState extends State<MoneyDonationPage> {
                                   setState(() {
                                       paymentMethod = newValue!;
                                   });
+                                  },
+                              ),
+                            ),
+                            Padding(
+                              // Menggunakan padding sebesar 8 pixels
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                  decoration: InputDecoration(
+                                      hintText: "Card Number",
+                                      labelText: "Credit Card",
+                                      // Menambahkan circular border agar lebih rapi
+                                      border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(5.0),
+                                      ),
+                                  ),
+                                  // Menambahkan behavior saat nama diketik 
+                                  onChanged: (String? value) {
+                                      setState(() {
+                                          ccNumber = value!;
+                                      });
+                                  },
+                                  // Menambahkan behavior saat data disimpan
+                                  onSaved: (String? value) {
+                                      setState(() {
+                                          ccNumber = value!;
+                                      });
+                                  },
+                                  // Validator sebagai validasi form
+                                  validator: (String? value) {
+                                      if (value == null || value.isEmpty) {
+                                          return "Your Credit Card Number can't be empty!";
+                                      }
+                                      return null;
                                   },
                               ),
                             ),
