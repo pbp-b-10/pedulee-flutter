@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pedulee/pages/drawer.dart';
+import 'package:pedulee/widgets/drawer.dart';
+import 'package:pedulee/models/money_models.dart';
 
 class MoneyDonationPage extends StatefulWidget {
     const MoneyDonationPage({super.key});
@@ -12,10 +13,10 @@ class _MoneyDonationPageState extends State<MoneyDonationPage> {
     final _formKey = GlobalKey<FormState>();
     String fullName = "";
     String email = "";
-    String phoneNumber = "";
-    String ccNumber = "";
-    String paymentMethod = 'A';
-    List<String> listPaymentMethod = ['A', 'B', 'C', 'D', 'E', 'F', 'KI'];
+    int? phoneNumber = 0;
+    int? amount = 0;
+    String? paymentMethod;
+    int? ccNumber = 0;
 
     @override
     Widget build(BuildContext context) {
@@ -113,13 +114,13 @@ class _MoneyDonationPageState extends State<MoneyDonationPage> {
                                   // Menambahkan behavior saat nama diketik 
                                   onChanged: (String? value) {
                                       setState(() {
-                                          phoneNumber = value!;
+                                          phoneNumber = int.tryParse(value!);
                                       });
                                   },
                                   // Menambahkan behavior saat data disimpan
                                   onSaved: (String? value) {
                                       setState(() {
-                                          phoneNumber = value!;
+                                          phoneNumber = int.tryParse(value!);
                                       });
                                   },
                                   // Validator sebagai validasi form
@@ -131,23 +132,71 @@ class _MoneyDonationPageState extends State<MoneyDonationPage> {
                                   },
                               ),
                             ),
-                            ListTile(
-                              leading: const Icon(Icons.credit_card),
-                              title: const Text('Payment Method'),
-                              trailing: DropdownButton(
-                                  value: paymentMethod,
-                                  icon: const Icon(Icons.keyboard_arrow_down),
-                                  items: listPaymentMethod.map((String items) {
-                                  return DropdownMenuItem(
-                                      value: items,
-                                      child: Text(items),
-                                  );
-                                  }).toList(),
-                                  onChanged: (String? newValue) {
-                                  setState(() {
-                                      paymentMethod = newValue!;
-                                  });
+                            Padding(
+                              // Menggunakan padding sebesar 8 pixels
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                  decoration: InputDecoration(
+                                      hintText: "100000",
+                                      labelText: "Donation Amount",
+                                      // Menambahkan circular border agar lebih rapi
+                                      border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(5.0),
+                                      ),
+                                  ),
+                                  // Menambahkan behavior saat nama diketik 
+                                  onChanged: (String? value) {
+                                      setState(() {
+                                          amount = int.tryParse(value!);
+                                      });
                                   },
+                                  // Menambahkan behavior saat data disimpan
+                                  onSaved: (String? value) {
+                                      setState(() {
+                                          amount = int.tryParse(value!);
+                                      });
+                                  },
+                                  // Validator sebagai validasi form
+                                  validator: (String? value) {
+                                      if (value == null || value.isEmpty) {
+                                          return "Donation amount can't be empty!";
+                                      }
+                                      return null;
+                                  },
+                              ),
+                            ),
+                            Padding( // https://stackoverflow.com/a/69424783
+                              padding: const EdgeInsets.all(8.0),
+                              child: InputDecorator(
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(5.0)),
+                                  contentPadding: EdgeInsets.all(10),
+                                ),
+                                child: ButtonTheme(
+                                  materialTapTargetSize: MaterialTapTargetSize.padded,
+                                  child: DropdownButton<String>(
+                                    hint: const Text("Payment Method"),
+                                    isExpanded: true,
+                                    value: paymentMethod,
+                                    elevation: 16,
+                                    underline: DropdownButtonHideUnderline(
+                                      child: Container(),
+                                    ),
+                                    onChanged: (String? newValue) {
+                                      setState(() {
+                                        paymentMethod = newValue!;
+                                      });
+                                    },
+                                    items: <String>['Mandiri', 'BNI', 'BRI', 'BCA']
+                                        .map<DropdownMenuItem<String>>((String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    }).toList(),
+                                  ),
+                                ),
                               ),
                             ),
                             Padding(
@@ -165,13 +214,13 @@ class _MoneyDonationPageState extends State<MoneyDonationPage> {
                                   // Menambahkan behavior saat nama diketik 
                                   onChanged: (String? value) {
                                       setState(() {
-                                          ccNumber = value!;
+                                          ccNumber = int.tryParse(value!);
                                       });
                                   },
                                   // Menambahkan behavior saat data disimpan
                                   onSaved: (String? value) {
                                       setState(() {
-                                          ccNumber = value!;
+                                          ccNumber = int.tryParse(value!);
                                       });
                                   },
                                   // Validator sebagai validasi form
@@ -183,19 +232,23 @@ class _MoneyDonationPageState extends State<MoneyDonationPage> {
                                   },
                               ),
                             ),
-                            TextButton(
-                              child: const Text(
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: TextButton(
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(Colors.blue),
+                                ),
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    ListMoney.data.add(Money(fullName, email, phoneNumber, amount, paymentMethod, ccNumber));
+                                  }
+                                },
+                                child: const Text(
                                   "Submit",
                                   style: TextStyle(color: Colors.white),
+                                ),
                               ),
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(Colors.blue),
-                              ),
-                              onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
-                                  }
-                              },
-                            ),
+                            )
                         ],
                     ),
                     ),

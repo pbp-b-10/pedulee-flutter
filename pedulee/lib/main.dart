@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pedulee/pages/drawer.dart';
+import 'package:pedulee/widgets/drawer.dart';
 
 void main() {
   runApp(const MyApp());
