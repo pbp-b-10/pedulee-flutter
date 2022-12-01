@@ -8,6 +8,8 @@ Marietha Asnat Nauli Sitompul - 2106752413 <br />
 ## CERITA APLIKASI
 Pedulee adalah sebuah platform yang menerima donasi dalam berbagai bentuk, yaitu pakaian bekas layak pakai, dana atau uang, donor darah, serta sembako yang nantinya akan diberikan kepada korban bencana dari proyek yang sedang berjalan. Selain itu, platform Pedulee juga menyalurkan sukarelawan ke berbagai kegiatan atau proyek yang dapat diakses pada fitur _volunteering_. Penerimaan donasi dan kegiatan sukarela ini dilaksanakan untuk membantu isu-isu kemanusiaan yang berkaitan dengan G20. Donasi pakaian bekas layak pakai berkaitan dengan isu _Climate Sustainability and Energy_; donasi uang dan sembako berkaitan dengan isu _Agriculture and Food Security_; donor darah berkaitan dengan isu Global Health; dan _volunteering_ berkaitan dengan isu _Strong, Sustainable, Balanced and Inclusive Growth_. <br />
 
+#### [🔗 Link Website Pedulee](https://pedulee.up.railway.app/) <br />
+
 ## ROLE PENGGUNA
 **a. Guest user** <br />
 - Mengunjungi dan mengakses fitur pada Main Page <br />
