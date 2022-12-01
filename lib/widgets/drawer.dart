@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pedulee/main.dart';
-import 'package:pedulee/pages/money.dart';
+import 'package:pedulee/apps/money/pages/money.dart';
 
 Drawer drawerBuild(BuildContext context) {
   return Drawer(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pedulee/widgets/drawer.dart';
-import 'package:pedulee/models/money_models.dart';
+import 'package:pedulee/apps/money/models/money_models.dart';
 
 class MoneyDonationPage extends StatefulWidget {
     const MoneyDonationPage({super.key});
