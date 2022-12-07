@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+
 import 'package:pedulee/widgets/drawer.dart';
+import 'package:pedulee/widgets/footer.dart';
+import 'package:pedulee/widgets/card.dart';
+import 'package:pedulee/widgets/title.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -67,88 +71,11 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Column footerWidget() => Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(
-            height: 30,
-          ),
-          const Divider(
-            color: Colors.black54,
-            thickness: 1,
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          titleWidget('Pedulee'),
-          const SizedBox(
-            height: 20,
-          ),
-          Text('Proyek Tengah Semester PBP B-10'),
-          const SizedBox(
-            height: 30,
-          ),
-          titleWidget('Contributors'),
-          const SizedBox(
-            height: 20,
-          ),
-          Center(
-            child: Text(
-                'Alvin Widi Nugroho \nDaffa Muhammad Faizan \nGhayda Rafa Hernawan \nMarietha Asnat Nauli Sitompul \nRakhan Yusuf Rivesa'),
-          )
-        ],
-      );
-
-  Widget cardWidget(
-      {required String title,
-      required String content,
-      required String imagePath}) {
-    return Padding(
-      padding: const EdgeInsets.all(30),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(30),
-        child: Container(
-          decoration: BoxDecoration(color: Colors.white.withOpacity(0.5)),
-          child: Column(
-            children: [
-              Image.asset(
-                imagePath,
-                fit: BoxFit.fill,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 30,
-                ),
-                child: titleWidget(title),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(30),
-                child: Text(
-                  content,
-                  style: const TextStyle(fontSize: 18),
-                ),
-              ),
-              ElevatedButton(onPressed: () {}, child: const Text('More Info')),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   AppBar appBarWidget() {
     return AppBar(
       backgroundColor: Colors.orangeAccent.shade100.withOpacity(0.5),
       title: titleWidget('Pedulee'),
       centerTitle: true,
-    );
-  }
-
-  Widget titleWidget(String s) {
-    return Text(
-      s,
-      style: const TextStyle(
-          color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
     );
   }
 }
