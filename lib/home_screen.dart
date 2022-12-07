@@ -5,6 +5,7 @@ import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/widgets/footer.dart';
 import 'package:pedulee/widgets/card.dart';
 import 'package:pedulee/widgets/title.dart';
+import 'package:pedulee/widgets/appbar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -68,14 +69,6 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ],
-    );
-  }
-
-  AppBar appBarWidget() {
-    return AppBar(
-      backgroundColor: Colors.orangeAccent.shade100.withOpacity(0.5),
-      title: titleWidget('Pedulee'),
-      centerTitle: true,
     );
   }
 }

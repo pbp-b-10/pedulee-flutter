@@ -30,5 +30,8 @@ Column footerWidget() => Column(
       child: Text(
           'Alvin Widi Nugroho \nDaffa Muhammad Faizan \nGhayda Rafa Hernawan \nMarietha Asnat Nauli Sitompul \nRakhan Yusuf Rivesa'),
     ),
+    const SizedBox(
+      height: 60,
+    ),
   ],
 );
