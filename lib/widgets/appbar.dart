@@ -3,11 +3,12 @@ import 'package:pedulee/widgets/title.dart';
 
 AppBar appBarWidget() {
   return AppBar(
-    backgroundColor: Colors.orangeAccent.shade100.withOpacity(0.5),
-    title: titleWidget('Pedulee'),
-    // leading: ImageIcon(
-    //   AssetImage("assets/logo.png"),
-    // ),
+    backgroundColor: Color.fromARGB(255, 252, 243, 229),
+    title: Image.asset(
+      'assets/logo.png',
+      scale: 2.5,
+    ),
+
     centerTitle: true,
   );
 }

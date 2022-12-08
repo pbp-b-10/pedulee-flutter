@@ -14,9 +14,12 @@ Column footerWidget() => Column(
     const SizedBox(
       height: 30,
     ),
-    titleWidget('Pedulee'),
+    Image.asset(
+      'assets/logo.png',
+      scale: 2.5,
+    ),
     const SizedBox(
-      height: 20,
+      height: 30,
     ),
     Text('Proyek Tengah Semester PBP B-10'),
     const SizedBox(

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/apps/money/models/money_models.dart';
+
 import 'package:pedulee/widgets/footer.dart';
+import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/widgets/appbar.dart';
+import 'package:pedulee/widgets/title.dart';
 
 class MoneyDonationPage extends StatefulWidget {
     const MoneyDonationPage({super.key});
@@ -39,6 +41,15 @@ class _MoneyDonationPageState extends State<MoneyDonationPage> {
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
                       children: [
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Text(
+                            style: TextStyle(
+                              fontSize: 30
+                            ),
+                            'MONEY DONATION',
+                          ),
                           const SizedBox(
                             height: 30,
                           ),
