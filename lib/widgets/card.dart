@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pedulee/widgets/title.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 Widget cardWidget(
     {required String title,
     required String content,
-    required String imagePath}) {
+    required String imagePath,
+    required String url}) {
     return Padding(
       padding: const EdgeInsets.all(30),
       child: ClipRRect(
@@ -30,7 +32,9 @@ Widget cardWidget(
                   style: const TextStyle(fontSize: 18),
                 ),
               ),
-              ElevatedButton(onPressed: () {}, child: const Text('More Info')),
+              ElevatedButton(onPressed: () {
+                launchUrl(Uri.parse(url));
+              }, child: const Text('More Info')),
             ],
           ),
         ),
