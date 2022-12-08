@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pedulee/home_screen.dart';
 import 'package:pedulee/apps/money/pages/money.dart';
+import 'package:pedulee/projects_screen.dart';
 
 Drawer drawerBuild(BuildContext context) {
   return Drawer(
@@ -17,29 +18,41 @@ Drawer drawerBuild(BuildContext context) {
             );
           },
         ),
+        // Menambahkan clickable menu
+        ListTile(
+          title: const Text('Projects'),
+          onTap: () {
+            // Route menu ke counter
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const ProjectsScreen()),
+            );
+          },
+        ),
         ExpansionTile(
-              title: Text("Donation"),
-              children: <Widget>[
-                ListTile(
-                  title: const Text('Money'),
-                  onTap: () {
-                    // Route menu ke counter
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => const MoneyDonationPage()),
-                    );
-                  },
-                ),
-                ListTile(
-                  title: const Text('Blood'),
-                  onTap: (){
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => const MoneyDonationPage()),
-                    );
-                  }
-                )
-              ],
+          title: const Text("Donation"),
+          children: <Widget>[
+            ListTile(
+              title: const Text('Money'),
+              onTap: () {
+                // Route menu ke counter
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MoneyDonationPage()),
+                );
+              },
+            ),
+            ListTile(
+                title: const Text('Blood'),
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MoneyDonationPage()),
+                  );
+                })
+          ],
         ),
       ],
     ),

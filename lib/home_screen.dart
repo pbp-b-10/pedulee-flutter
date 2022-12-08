@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:pedulee/apps/project/card.dart';
 import 'package:pedulee/widgets/drawer.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -40,26 +41,13 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            cardWidget(
-                title: 'Air untuk Jayapura',
+            const ProjectCard(
+                title: "Air untuk Jayapura",
                 content:
                     'Debit air dari sejumlah mata air di Kota Jayapura turun drastis hingga lebih dari 50 persen',
-                imagePath: 'assets/wcwlwmg3ipwxtdjojfzw.jpg'),
-            cardWidget(
-                title: 'Bantuan untuk Ambon',
-                content:
-                    'Sebanyak 1.135 keluarga yang terdiri atas 4.706 jiwa, menghadapi dampak banjir dan tanah longsor di wilayah Kota Ambon',
-                imagePath: 'assets/61f8d613d1413.jpg'),
-            cardWidget(
-                title: 'Halmahera Barat Terguncang',
-                content:
-                    'Terjadi gempa bumi berkekuatan 5.9 M pada kedalaman 10 km di Kabupaten Halmahera Barat',
-                imagePath: 'assets/1674672637.jpeg'),
-            cardWidget(
-                title: 'Musi Rawas Utara Tertiup Angin',
-                content:
-                    'BPBD Sumatera Selatan mencatat 58 rumah warga di Kabupaten Musi Rawas Utara rusak dihantam angin puting beliung',
-                imagePath: 'assets/kfbdhjbgragjkre.jpg'),
+                imageURL:
+                    'https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1601362955/wcwlwmg3ipwxtdjojfzw.jpg',
+                url: 'url'),
             footerWidget()
           ],
         ),
@@ -84,7 +72,7 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Text('Proyek Tengah Semester PBP B-10'),
+          const Text('Proyek Tengah Semester PBP B-10'),
           const SizedBox(
             height: 30,
           ),
@@ -92,49 +80,12 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Center(
+          const Center(
             child: Text(
                 'Alvin Widi Nugroho \nDaffa Muhammad Faizan \nGhayda Rafa Hernawan \nMarietha Asnat Nauli Sitompul \nRakhan Yusuf Rivesa'),
           )
         ],
       );
-
-  Widget cardWidget(
-      {required String title,
-      required String content,
-      required String imagePath}) {
-    return Padding(
-      padding: const EdgeInsets.all(30),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(30),
-        child: Container(
-          decoration: BoxDecoration(color: Colors.white.withOpacity(0.5)),
-          child: Column(
-            children: [
-              Image.asset(
-                imagePath,
-                fit: BoxFit.fill,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 30,
-                ),
-                child: titleWidget(title),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(30),
-                child: Text(
-                  content,
-                  style: const TextStyle(fontSize: 18),
-                ),
-              ),
-              ElevatedButton(onPressed: () {}, child: const Text('More Info')),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 
   AppBar appBarWidget() {
     return AppBar(
