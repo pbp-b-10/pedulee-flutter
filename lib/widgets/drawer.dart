@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pedulee/apps/volunteer/form.dart';
 import 'package:pedulee/home_screen.dart';
 import 'package:pedulee/apps/money/pages/money.dart';
 import 'package:pedulee/projects_screen.dart';
@@ -26,6 +27,18 @@ Drawer drawerBuild(BuildContext context) {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const ProjectsScreen()),
+            );
+          },
+        ),
+        // Menambahkan clickable menu
+        ListTile(
+          title: const Text('Volunteer'),
+          onTap: () {
+            // Route menu ke counter
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const VolunteerFormPage()),
             );
           },
         ),

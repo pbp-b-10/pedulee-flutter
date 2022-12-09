@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pedulee/apps/project/card.dart';
 import 'package:pedulee/widgets/drawer.dart';
+import 'package:http/http.dart' as http;
+
+Future<http.Response> fetchProjects() {
+  return http.get(Uri.parse('https://pedulee.up.railway.app/api/projects/'));
+}
 
 class ProjectsScreen extends StatefulWidget {
   const ProjectsScreen({super.key});
