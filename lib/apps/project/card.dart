@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pedulee/models/project.dart';
 
 class ProjectCard extends StatelessWidget {
   final String title;
@@ -15,6 +16,13 @@ class ProjectCard extends StatelessWidget {
     required this.imageURL,
     required this.url,
   });
+  factory ProjectCard.fromProject(Project project) {
+    return ProjectCard(
+        title: project.title,
+        content: project.description,
+        imageURL: project.image,
+        url: project.link);
+  }
   void onClickMoreInfo() {
     // Do button click here
   }

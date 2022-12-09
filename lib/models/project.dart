@@ -1,4 +1,9 @@
 import 'package:pedulee/models/serializer.dart';
+import 'package:http/http.dart' as http;
+
+Future<http.Response> fetchProjects() {
+  return http.get(Uri.parse('https://pedulee.up.railway.app/api/projects/'));
+}
 
 class Project {
   String title = "";
