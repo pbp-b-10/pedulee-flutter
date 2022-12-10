@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pedulee/home_screen.dart';
 import 'package:pedulee/apps/money/pages/money.dart';
+import 'package:pedulee/apps/blood/pages/blood.dart';
 
 Drawer drawerBuild(BuildContext context) {
   return Drawer(
@@ -35,7 +36,7 @@ Drawer drawerBuild(BuildContext context) {
                   onTap: (){
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => const MoneyDonationPage()),
+                      MaterialPageRoute(builder: (context) => const BloodDonationPage()),
                     );
                   }
                 )

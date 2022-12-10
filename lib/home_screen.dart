@@ -21,10 +21,12 @@ class HomeScreen extends StatelessWidget {
       children: [
         SizedBox(
           height: MediaQuery.of(context).size.height,
-          child: Image.asset(
-            'assets/bg.jpg',
-            fit: BoxFit.fill, //agar rounded corner imagenya
-          ),
+          child: Container(
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(image: AssetImage('assets/bg.jpg'),fit:BoxFit.cover),
+            ),
+        ),
         ),
         ListView(
           physics: const BouncingScrollPhysics(),
