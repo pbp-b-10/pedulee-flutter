@@ -21,7 +21,7 @@ Column footerWidget() => Column(
     const SizedBox(
       height: 30,
     ),
-    Text('Proyek Tengah Semester PBP B-10'),
+    Text('Proyek Akhir Semester PBP B-10'),
     const SizedBox(
       height: 30,
     ),

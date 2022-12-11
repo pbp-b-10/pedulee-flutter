@@ -8,6 +8,7 @@ AppBar appBarWidget() {
       'assets/logo.png',
       scale: 2.5,
     ),
+    iconTheme: IconThemeData(color: Colors.black),
 
     centerTitle: true,
   );

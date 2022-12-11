@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/widgets/footer.dart';
 import 'package:pedulee/widgets/card.dart';
@@ -27,6 +26,7 @@ class HomeScreen extends StatelessWidget {
       children: [
         SizedBox(
           height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           child: Image.asset(
             'assets/bg.jpg',
             fit: BoxFit.fill, //agar rounded corner imagenya
@@ -51,29 +51,29 @@ class HomeScreen extends StatelessWidget {
                 content:
                     'Debit air dari sejumlah mata air di Kota Jayapura turun drastis hingga lebih dari 50 persen',
                 imagePath: 'assets/wcwlwmg3ipwxtdjojfzw.jpg',
-                url: 'https://www.kompas.id/baca/nusantara/2020/09/10/kota-jayapura-terancam-krisis-air-bersih'
-            ),
+                url:
+                    'https://www.kompas.id/baca/nusantara/2020/09/10/kota-jayapura-terancam-krisis-air-bersih'),
             cardWidget(
                 title: 'Bantuan untuk Ambon',
                 content:
                     'Sebanyak 1.135 keluarga yang terdiri atas 4.706 jiwa, menghadapi dampak banjir dan tanah longsor di wilayah Kota Ambon',
                 imagePath: 'assets/61f8d613d1413.jpg',
-                url: 'https://ambon.antaranews.com/berita/127753/1153-keluarga-terdampak-banjir-dan-tanah-longsor-di-ambon-turut-prihatin'
-            ),
+                url:
+                    'https://ambon.antaranews.com/berita/127753/1153-keluarga-terdampak-banjir-dan-tanah-longsor-di-ambon-turut-prihatin'),
             cardWidget(
                 title: 'Halmahera Barat Terguncang',
                 content:
                     'Terjadi gempa bumi berkekuatan 5.9 M pada kedalaman 10 km di Kabupaten Halmahera Barat',
                 imagePath: 'assets/1674672637.jpeg',
-                url: 'https://pusatkrisis.kemkes.go.id/Gempa-Bumi-di-HALMAHERA-BARAT-MALUKU-UTARA-14-08-2022-73'
-            ),
+                url:
+                    'https://pusatkrisis.kemkes.go.id/Gempa-Bumi-di-HALMAHERA-BARAT-MALUKU-UTARA-14-08-2022-73'),
             cardWidget(
                 title: 'Musi Rawas Utara Tertiup Angin',
                 content:
                     'BPBD Sumatera Selatan mencatat 58 rumah warga di Kabupaten Musi Rawas Utara rusak dihantam angin puting beliung',
                 imagePath: 'assets/kfbdhjbgragjkre.jpg',
-                url: 'https://www.gatra.com/news-534824-kebencanaan-angin-puting-beliung-rusak-58-rumah-di-musi-rawas-utara.html'
-            ),
+                url:
+                    'https://www.gatra.com/news-534824-kebencanaan-angin-puting-beliung-rusak-58-rumah-di-musi-rawas-utara.html'),
             footerWidget()
           ],
         ),
