@@ -1,5 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
-import 'package:pedulee/main.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:pedulee/register_page.dart';
@@ -131,11 +132,11 @@ class LoginPageState extends State<LoginPage> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 170, 196, 255),
+                    backgroundColor: const Color.fromARGB(255, 170, 196, 255),
                     elevation: 3,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(32.0)),
-                    minimumSize: Size(120, 50),
+                    minimumSize: const Size(120, 50),
                   ),
                   child: const Text(
                     'Login',
@@ -171,7 +172,7 @@ class LoginPageState extends State<LoginPage> {
                       // ignore: use_build_context_synchronously
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        MaterialPageRoute(builder: (context) => const HomeScreen()),
                       );
                     } else {
                       // Code here will run if the login failed (wrong username/password).

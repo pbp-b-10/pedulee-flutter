@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/widgets/footer.dart';
 import 'package:pedulee/widgets/card.dart';

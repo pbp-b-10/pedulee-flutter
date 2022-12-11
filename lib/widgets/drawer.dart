@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:pedulee/login_page.dart';
 import 'package:pedulee/home_screen.dart';
@@ -42,7 +44,7 @@ Drawer drawerBuild(BuildContext context) {
               ),
             ],
           ),
-          ExpansionTile(title: Text("Clothes"), children: [
+          ExpansionTile(title: const Text("Clothes"), children: [
             ListTile(
               title: const Text("Add Clothes"),
               onTap: () {
@@ -102,7 +104,7 @@ Drawer drawerBuild(BuildContext context) {
                 // ignore: use_build_context_synchronously
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  MaterialPageRoute(builder: (context) => const LoginPage()),
                 );
               } else {
                 // Code here will run if the login failed (wrong username/password).
