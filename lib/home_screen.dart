@@ -3,7 +3,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:pedulee/apps/project/card.dart';
 import 'package:pedulee/models/django_model.dart';
 import 'package:pedulee/models/project.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:pedulee/widgets/drawer.dart';
+import 'package:pedulee/widgets/footer.dart';
+import 'package:pedulee/widgets/title.dart';
+import 'package:pedulee/widgets/appbar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -37,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         SizedBox(
           height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           child: Image.asset(
             'assets/bg.jpg',
             fit: BoxFit.fill, //agar rounded corner imagenya
@@ -87,54 +92,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ],
-    );
-  }
-
-  Column footerWidget() => Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(
-            height: 30,
-          ),
-          const Divider(
-            color: Colors.black54,
-            thickness: 1,
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          titleWidget('Pedulee'),
-          const SizedBox(
-            height: 20,
-          ),
-          const Text('Proyek Tengah Semester PBP B-10'),
-          const SizedBox(
-            height: 30,
-          ),
-          titleWidget('Contributors'),
-          const SizedBox(
-            height: 20,
-          ),
-          const Center(
-            child: Text(
-                'Alvin Widi Nugroho \nDaffa Muhammad Faizan \nGhayda Rafa Hernawan \nMarietha Asnat Nauli Sitompul \nRakhan Yusuf Rivesa'),
-          )
-        ],
-      );
-
-  AppBar appBarWidget() {
-    return AppBar(
-      backgroundColor: Colors.orangeAccent.shade100.withOpacity(0.5),
-      title: titleWidget('Pedulee'),
-      centerTitle: true,
-    );
-  }
-
-  Widget titleWidget(String s) {
-    return Text(
-      s,
-      style: const TextStyle(
-          color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
     );
   }
 }
