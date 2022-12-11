@@ -26,112 +26,110 @@ Drawer drawerBuild(BuildContext context) {
               );
             },
           ),
-        ExpansionTile(
-              title: Text("Donation"),
-              children: <Widget>[
-                ListTile(
-                  title: const Text('Money'),
-                  onTap: () {
-                    // Route menu ke counter
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => const MoneyDonationPage()),
-                    );
-                  },
-                ),
-              ],
-        ),
-        ExpansionTile(
-          title: Text("Clothes"),
-          children: [
-            ListTile( 
-                title: Text("Add Clothes"),
-                onTap: (){ 
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => ClothFormPage()),
-                    );
-                  },
-                ),
-              ListTile( 
-                title: Text("Clothes History"),
-                onTap: (){ 
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => ClothPage()),
-                    );
-                  },
-                ),
-              ]
-        ),
-        ListTile(
-                    title: const Text('Blood'),
-                    //hoverColor: const Color.fromARGB(255, 248, 226, 190),
-                    onTap: (){
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => const MoneyDonationPage()),
-                      );
-                    }
+          ExpansionTile(
+            title: const Text("Donation"),
+            children: <Widget>[
+              ListTile(
+                title: const Text('Money'),
+                onTap: () {
+                  // Route menu ke counter
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MoneyDonationPage()),
+                  );
+                },
+              ),
+            ],
+          ),
+          ExpansionTile(title: Text("Clothes"), children: [
+            ListTile(
+              title: const Text("Add Clothes"),
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ClothFormPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text("Clothes History"),
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ClothPage()),
+                );
+              },
+            ),
+          ]),
+          ListTile(
+              title: const Text('Blood'),
+              //hoverColor: const Color.fromARGB(255, 248, 226, 190),
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MoneyDonationPage()),
+                );
+              }),
+          ListTile(
+            title: const Text("Logout"),
+            onTap: () async {
+              final response = await request
+                  .logout("https://pedulee.up.railway.app/auth/logout/");
+              if (!request.loggedIn) {
+                // Code here will run if the login succeeded.
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  behavior: SnackBarBehavior.floating,
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  content: Container(
+                    padding: const EdgeInsets.all(10),
+                    height: 50,
+                    decoration: const BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "Logout Success!",
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ),
-        ListTile( 
-            title: Text("Logout"),
-            onTap: () async { 
-                final response = await request
-                        .logout("https://pedulee.up.railway.app/auth/logout/");
-                    if (!request.loggedIn) {
-                      // Code here will run if the login succeeded.
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        behavior: SnackBarBehavior.floating,
-                        backgroundColor: Colors.transparent,
-                        elevation: 0,
-                        content: Container(
-                          padding: const EdgeInsets.all(10),
-                          height: 50,
-                          decoration: const BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: const Center(
-                            child: Text(
-                                "Logout Success!",
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                        ),
-                      ));
-                      // ignore: use_build_context_synchronously
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LoginPage()),
-                        );
-                    } else {
-                      // Code here will run if the login failed (wrong username/password).
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        behavior: SnackBarBehavior.floating,
-                        backgroundColor: Colors.transparent,
-                        elevation: 0,
-                        content: Container(
-                          padding: const EdgeInsets.all(10),
-                          height: 50,
-                          decoration: const BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: const Center(
-                            child: Text(
-                                "Logout failed!",
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                        ),
-                      ));
-                    }
-                  },
-        ),
-      ],
-    ),
+                ));
+                // ignore: use_build_context_synchronously
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+              } else {
+                // Code here will run if the login failed (wrong username/password).
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  behavior: SnackBarBehavior.floating,
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  content: Container(
+                    padding: const EdgeInsets.all(10),
+                    height: 50,
+                    decoration: const BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "Logout failed!",
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ));
+              }
+            },
+          ),
+        ],
+      ),
     ),
   );
 }
