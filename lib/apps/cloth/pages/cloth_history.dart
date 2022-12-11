@@ -8,10 +8,10 @@ class ClothPage extends StatefulWidget {
   const ClothPage({Key? key}) : super(key: key);
 
   @override
-  _ClothPageState createState() => _ClothPageState();
+  ClothPageState createState() => ClothPageState();
 }
 
-class _ClothPageState extends State<ClothPage> {
+class ClothPageState extends State<ClothPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +50,9 @@ class _ClothPageState extends State<ClothPage> {
                         itemBuilder: (_, index) {
                           return GestureDetector(
                             child: Padding(
-                              padding: EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(10),
                               child: ListTile(
-                                leading: Icon(Linecons.t_shirt),
+                                leading: const Icon(Linecons.t_shirt),
                                 title: Text(
                                   "${snapshot.data![index].fields.clothModel}",
                                   style: const TextStyle(
@@ -68,7 +68,7 @@ class _ClothPageState extends State<ClothPage> {
                                   ),
                                 ),
                                 trailing: Text(
-                                  "${snapshot.data![index].fields.date.toString().substring(0, 10)}",
+                                  snapshot.data![index].fields.date.toString().substring(0, 10),
                                   style: const TextStyle(
                                     color: Colors.black45,
                                     fontSize: 16,

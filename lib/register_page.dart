@@ -173,7 +173,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10.0),
+                          const SizedBox(height: 10.0),
                           SizedBox(
                             width: 220,
                             height: 55,
@@ -208,10 +208,10 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10.0),
+                          const SizedBox(height: 10.0),
                         ],
                       ),
-                      SizedBox(width: 10.0),
+                      const SizedBox(width: 10.0),
                       Wrap(
                         direction: Axis.vertical,
                         children: [
@@ -248,7 +248,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   ),
                                 ),
                               ),
-                              SizedBox(width: 10.0),
+                              const SizedBox(width: 10.0),
                               SizedBox(
                                 width: 105,
                                 height: 55,
@@ -281,7 +281,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 10.0),
+                          const SizedBox(height: 10.0),
                           SizedBox(
                             width: 220,
                             height: 55,
@@ -312,7 +312,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10.0),
+                          const SizedBox(height: 10.0),
                           SizedBox(
                             width: 220,
                             height: 55,
@@ -355,7 +355,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10.0),
+                          const SizedBox(height: 10.0),
                           SizedBox(
                             width: 220,
                             height: 55,
@@ -386,7 +386,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10.0),
+                          const SizedBox(height: 10.0),
                         ],
                       ),
                     ],
@@ -473,7 +473,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(height: 10.0),
+                      const SizedBox(height: 10.0),
                       const Text(
                         "Already have an account?",
                         style: TextStyle(fontSize: 20),
