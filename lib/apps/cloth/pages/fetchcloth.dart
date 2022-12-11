@@ -4,8 +4,7 @@ import 'package:http/http.dart' as http;
 
 Future<List<Cloth>> fetchCloth() async {
     var url =
-        // Uri.parse('https://pedulee.up.railway.app/history/api/cloth/');
-        Uri.parse('https://api.npoint.io/aafd61f3625f59a964d7');
+        Uri.parse('https://pedulee.up.railway.app/history/api/cloth/');
     var response = await http.get(
       url,
       headers: {

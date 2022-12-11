@@ -3,6 +3,7 @@ import 'package:pedulee/main.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:pedulee/register_page.dart';
+import 'package:pedulee/home_screen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -28,9 +29,16 @@ class _LoginPageState extends State<LoginPage> {
     // The rest of your widgets are down below
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
       body: Stack(
         children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: Image.asset(
+              'assets/bg.jpg',
+              fit: BoxFit.fill, //agar rounded corner imagenya
+            ),
+          ),
           const Align(
             alignment: Alignment.topRight,
           ),
@@ -163,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                       // ignore: use_build_context_synchronously
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => MyHomePage()),
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
                       );
                     } else {
                       // Code here will run if the login failed (wrong username/password).
