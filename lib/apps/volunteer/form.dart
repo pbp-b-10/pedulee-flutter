@@ -19,14 +19,24 @@ class VolunteerFormPage extends StatefulWidget {
 
 class _VolunteerFormPageState extends State<VolunteerFormPage> {
   final _formKey = GlobalKey<FormState>();
-  String fullName = "";
-  String email = "";
-  int? phoneNumber = 0;
-  int? amount = 0;
-  String? paymentMethod;
-  int project_id = 0;
-  int? ccNumber = 0;
+  Project? selected;
+  String? divisi;
+  int amount = 0;
   Volunteer form = Volunteer(project_id: 0, divisi: "", durasi: 0);
+
+  late List<DjangoModelItem<Project>> data;
+
+  @override
+  void initState() {
+    super.initState();
+    data = getLocalData();
+  }
+
+  final imageURL = "https://pedulee.up.railway.app/static/images/Volunteer.png";
+
+  final dropDownDecorator = InputDecoration(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
+      contentPadding: const EdgeInsets.all(10));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,59 +52,56 @@ class _VolunteerFormPageState extends State<VolunteerFormPage> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
+                Image.network(imageURL, fit: BoxFit.fill),
                 InputDecorator(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0)),
-                    contentPadding: EdgeInsets.all(10),
-                  ),
+                  decoration: dropDownDecorator,
                   child: ButtonTheme(
                     materialTapTargetSize: MaterialTapTargetSize.padded,
-                    child: DropdownButton<int>(
+                    child: DropdownButton<Project>(
                       hint: const Text("Daftar Projek"),
                       isExpanded: true,
-                      value: project_id,
                       elevation: 16,
                       underline: DropdownButtonHideUnderline(
                         child: Container(),
                       ),
-                      onChanged: (int? newValue) {
+                      onChanged: (Project? newValue) {
                         setState(() {
-                          project_id = newValue!;
+                          amount = 0;
+                          if (newValue != null) {
+                            selected = newValue;
+                            amount = newValue.akhir_waktu
+                                .difference(DateTime.now())
+                                .inDays;
+                          }
                         });
                       },
-                      items: list.map<DropdownMenuItem<int>>(
-                        (e) {
-                          DjangoModelItem<Project> item =
-                              DjangoModelItem.fromJson(e, ProjectSerializer());
-                          return DropdownMenuItem<int>(
-                            value: item.pk,
-                            child: Text(item.fields.title),
-                          );
-                        },
-                      ).toList(),
+                      value: selected,
+                      items: data
+                          .map<DropdownMenuItem<Project>>(
+                            (e) => DropdownMenuItem<Project>(
+                              value: e.fields,
+                              child: Text(e.fields.title),
+                            ),
+                          )
+                          .toList(),
                     ),
                   ),
                 ),
                 InputDecorator(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0)),
-                    contentPadding: EdgeInsets.all(10),
-                  ),
+                  decoration: dropDownDecorator,
                   child: ButtonTheme(
                     materialTapTargetSize: MaterialTapTargetSize.padded,
                     child: DropdownButton<String>(
                       hint: const Text("Bidang Project"),
                       isExpanded: true,
-                      value: paymentMethod,
+                      value: divisi,
                       elevation: 16,
                       underline: DropdownButtonHideUnderline(
                         child: Container(),
                       ),
                       onChanged: (String? newValue) {
                         setState(() {
-                          paymentMethod = newValue!;
+                          divisi = newValue!;
                         });
                       },
                       items: Volunteer.DIVISI_CHOICES
@@ -107,34 +114,21 @@ class _VolunteerFormPageState extends State<VolunteerFormPage> {
                     ),
                   ),
                 ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "100000",
-                    labelText: "Durasi",
-                    // Menambahkan circular border agar lebih rapi
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
+                InputDecorator(
+                  decoration: dropDownDecorator,
+                  child: ButtonTheme(
+                    materialTapTargetSize: MaterialTapTargetSize.padded,
+                    child: DropdownButton<String>(
+                        hint: Text("Durasi: $amount"),
+                        isExpanded: true,
+                        value: divisi,
+                        elevation: 16,
+                        underline: DropdownButtonHideUnderline(
+                          child: Container(),
+                        ),
+                        onChanged: null,
+                        items: null),
                   ),
-                  // Menambahkan behavior saat nama diketik
-                  onChanged: (String? value) {
-                    setState(() {
-                      amount = int.tryParse(value!);
-                    });
-                  },
-                  // Menambahkan behavior saat data disimpan
-                  onSaved: (String? value) {
-                    setState(() {
-                      amount = int.tryParse(value!);
-                    });
-                  },
-                  // Validator sebagai validasi form
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return "Donation amount can't be empty!";
-                    }
-                    return null;
-                  },
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,

@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:pedulee/apps/project/card.dart';
+import 'package:pedulee/models/django_model.dart';
+import 'package:pedulee/models/project.dart';
 import 'package:pedulee/widgets/drawer.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late List<DjangoModelItem<Project>>? data;
+
+  @override
+  void initState() {
+    super.initState();
+    data = getLocalData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,16 +53,36 @@ class HomeScreen extends StatelessWidget {
               height: 20,
             ),
             Center(child: titleWidget('On Going Project')),
-            const SizedBox(
-              height: 30,
+            FutureBuilder<List<DjangoModelItem<Project>>>(
+              future: fetchData(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  data = snapshot.requireData;
+                }
+                if (data != null) {
+                  return SingleChildScrollView(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 25, vertical: 40),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: data!
+                              .map<Widget>(
+                                (e) => ProjectCard.fromProject(e.fields),
+                              )
+                              .expand((element) => [
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    element,
+                                  ])
+                              .toList()),
+                    ),
+                  );
+                }
+                return const Text("No internet");
+              },
             ),
-            const ProjectCard(
-                title: "Air untuk Jayapura",
-                content:
-                    'Debit air dari sejumlah mata air di Kota Jayapura turun drastis hingga lebih dari 50 persen',
-                imageURL:
-                    'https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1601362955/wcwlwmg3ipwxtdjojfzw.jpg',
-                url: 'url'),
             footerWidget()
           ],
         ),

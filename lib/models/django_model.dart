@@ -1,6 +1,10 @@
 import 'package:pedulee/models/serializer.dart';
 
-class DjangoModelItem<E> {
+abstract class JSONAble {
+  Map<String, dynamic> toJson();
+}
+
+class DjangoModelItem<E extends JSONAble> extends JSONAble {
   String model = "";
   int pk = 0;
   E fields;
@@ -10,6 +14,16 @@ class DjangoModelItem<E> {
     required this.pk,
     required this.fields,
   });
+
+  @override
+  toJson() {
+    Map<String, dynamic> m = {};
+
+    m['model'] = model;
+    m['pk'] = pk;
+    m['fields'] = fields.toJson();
+    return m;
+  }
 
   factory DjangoModelItem.fromJson(
       Map<String, dynamic> json, Serializer<E> serializer) {
