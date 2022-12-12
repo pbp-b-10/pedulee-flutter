@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pedulee/models/project.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class ProjectCard extends StatelessWidget {
   final String title;
