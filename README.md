@@ -12,6 +12,8 @@ Pedulee adalah sebuah platform yang menerima donasi dalam berbagai bentuk, yaitu
 
 #### [🔗 Link Website Pedulee](https://pedulee.up.railway.app/) <br />
 
+#### [🔗 Link Download APK](https://github.com/pbp-b-10/pedulee-mobile/releases/download/1.5.9%2B1/app.apk) <br />
+
 ## ROLE PENGGUNA
 **a. Guest user** <br />
 - Mengunjungi dan mengakses fitur pada Main Page <br />
