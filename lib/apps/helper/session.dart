@@ -85,6 +85,18 @@ class CookieRequest {
     return json.decode(response.body);
   }
 
+  Future<int> postForm(String url, dynamic data) async {
+    if (kIsWeb) {
+      dynamic c = _client;
+      c.withCredentials = true;
+    }
+    http.Response response =
+        await _client.post(Uri.parse(url), body: data, headers: headers);
+    await _updateCookie(response);
+    // Expects and returns JSON request body
+    return response.statusCode;
+  }
+
   Future<dynamic> postJson(String url, dynamic data) async {
     if (kIsWeb) {
       dynamic c = _client;
