@@ -25,6 +25,57 @@ class _MoneyDonationPageState extends State<MoneyDonationPage> {
     String message = "";
     int? ccNumber = 0;
 
+    void successToast() {
+      // Code here will run if the login succeeded.
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        content: Container(
+          padding: const EdgeInsets.all(10),
+          height: 50,
+          decoration: const BoxDecoration(
+            color: Colors.green,
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+          ),
+          child: const Center(
+            child: Text(
+              "Thank you for your volunteer!",
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      ));
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const MoneyDonationPage()),
+      );
+    }
+
+    void errorToast() {
+      // Code here will run if the login failed (wrong username/password).
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        content: Container(
+          padding: const EdgeInsets.all(10),
+          height: 50,
+          decoration: const BoxDecoration(
+            color: Colors.red,
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+          ),
+          child: const Center(
+            child: Text(
+              "Sorry, something went wrong",
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      ));
+    }
+
     @override
     Widget build(BuildContext context) {
         final request = context.watch<CookieRequest>();
@@ -313,20 +364,26 @@ class _MoneyDonationPageState extends State<MoneyDonationPage> {
                             label: const Text('Submit'),
                             backgroundColor: Colors.lightBlue,
                             onPressed: () async {
-                                // if (_formKey.currentState!.validate()) {
-                                //   ListMoney.data.add(Money(fullName, email, phoneNumber, amount, paymentMethod, ccNumber));
-                                // }
-                                final response = await request.postJson(
-                                "https://pedulee.up.railway.app/money/create",
-                                convert.jsonEncode({
-                                  'fullName': fullName.toString(),
-                                  'email': email.toString(),
-                                  'phoneNumber': phoneNumber.toString(),
-                                  'amount': amount.toString(),
-                                  'message': message.toString(),
-                                  'paymentMethod': paymentMethod.toString(),
-                                  'ccNumber': ccNumber.toString(),
-                                }));
+                                //if (_formKey.currentState!.validate()) {
+                                  final response = await request.postForm(
+                                    "https://pedulee.up.railway.app/money/create",
+                                    {
+                                      'name': fullName,
+                                      'email': email,
+                                      'pnumber': phoneNumber.toString(),
+                                      'donation': amount.toString(),
+                                      'message': message,
+                                      'pmethod': paymentMethod,
+                                      'ccnumber': ccNumber.toString(),
+                                    });
+
+                                  // Credits: Asnat
+                                  if (response == 201) {
+                                    successToast();
+                                  } else {
+                                    errorToast();
+                                  }
+                                //}
                             },
                           ),
                           footerWidget(),

@@ -9,6 +9,7 @@ import 'package:pedulee/projects_screen.dart';
 import 'package:pedulee/login_page.dart';
 import 'package:pedulee/home_screen.dart';
 import 'package:pedulee/apps/money/pages/money.dart';
+import 'package:pedulee/apps/money/pages/money_history.dart';
 import 'package:pedulee/apps/cloth/pages/cloth_history.dart';
 import 'package:pedulee/apps/cloth/pages/cloth_form.dart';
 import 'package:provider/provider.dart';
@@ -71,13 +72,24 @@ Drawer drawerBuild(BuildContext context) {
             title: const Text("Donation"),
             children: <Widget>[
               ListTile(
-                title: const Text('Money'),
+                title: const Text('Donate Money'),
                 onTap: () {
                   // Route menu ke counter
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const MoneyDonationPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('Money History'),
+                onTap: () {
+                  // Route menu ke counter
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MoneyHistoryPage()),
                   );
                 },
               ),
