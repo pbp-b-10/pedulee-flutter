@@ -40,7 +40,7 @@ class _MoneyDonationPageState extends State<MoneyDonationPage> {
           ),
           child: const Center(
             child: Text(
-              "Thank you for your volunteer!",
+              "Thank you for your donation!",
               textAlign: TextAlign.center,
             ),
           ),
