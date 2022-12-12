@@ -1,18 +1,23 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:pedulee/apps/volunteer/form.dart';
-import 'package:pedulee/apps/volunteer/history.dart';
-import 'package:pedulee/home_screen.dart';
-import 'package:pedulee/apps/money/pages/money.dart';
-import 'package:pedulee/projects_screen.dart';
+import 'package:pedulee/apps/blood/pages/history_blood.dart';
 import 'package:pedulee/login_page.dart';
 import 'package:pedulee/home_screen.dart';
 import 'package:pedulee/apps/money/pages/money.dart';
+import 'package:pedulee/apps/blood/pages/blood.dart';
+import 'package:pedulee/apps/money/pages/money_history.dart';
 import 'package:pedulee/apps/cloth/pages/cloth_history.dart';
 import 'package:pedulee/apps/cloth/pages/cloth_form.dart';
 import 'package:provider/provider.dart';
 import 'package:pedulee/apps/helper/session.dart';
+
+import 'package:pedulee/apps/grocery/pages/grocery_page.dart';
+import 'package:pedulee/apps/grocery/pages/grocery_history.dart';
+
+import '../apps/volunteer/form.dart';
+import '../apps/volunteer/history.dart';
+import '../projects_screen.dart';
 
 Drawer drawerBuild(BuildContext context) {
   final request = context.watch<CookieRequest>();
@@ -71,7 +76,7 @@ Drawer drawerBuild(BuildContext context) {
             title: const Text("Donation"),
             children: <Widget>[
               ListTile(
-                title: const Text('Money'),
+                title: const Text('Donate Money'),
                 onTap: () {
                   // Route menu ke counter
                   Navigator.pushReplacement(
@@ -81,8 +86,40 @@ Drawer drawerBuild(BuildContext context) {
                   );
                 },
               ),
+              ListTile(
+                title: const Text('Money History'),
+                onTap: () {
+                  // Route menu ke counter
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MoneyHistoryPage()),
+                  );
+                },
+              ),
             ],
           ),
+          ExpansionTile(title: Text("Grocery"), children: [
+            ListTile(
+              title: Text("Add Grocery"),
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const GroceryDonationPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text("Grocery History"),
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const GroceryPage()),
+                );
+              },
+            ),
+          ]),
           ExpansionTile(title: Text("Clothes"), children: [
             ListTile(
               title: Text("Add Clothes"),
@@ -103,16 +140,28 @@ Drawer drawerBuild(BuildContext context) {
               },
             ),
           ]),
-          ListTile(
-              title: const Text('Blood'),
-              //hoverColor: const Color.fromARGB(255, 248, 226, 190),
+          ExpansionTile(title: const Text("Blood"), children: [
+            ListTile(
+              title: const Text("Add Blood"),
               onTap: () {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const MoneyDonationPage()),
+                      builder: (context) => const BloodDonationPage()),
                 );
-              }),
+              },
+            ),
+            ListTile(
+              title: const Text("Blood History"),
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const HistoryBloodPage()),
+                );
+              },
+            ),
+          ]),
           ListTile(
             title: Text("Logout"),
             onTap: () async {
