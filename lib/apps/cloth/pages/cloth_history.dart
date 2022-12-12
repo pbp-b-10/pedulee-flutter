@@ -31,16 +31,7 @@ class ClothPageState extends State<ClothPage> {
               future: fetchCloth(),
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.data == null) {
-                  return Column(
-                      children: const [
-                        Text(
-                          "No clothes exist",
-                          style:
-                              TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 20),
-                        ),
-                        SizedBox(height: 8),
-                      ],
-                    );
+                  return const Center(child: CircularProgressIndicator());
                 } else {
                   if (!snapshot.hasData) {
                     return Column(
@@ -48,7 +39,7 @@ class ClothPageState extends State<ClothPage> {
                         Text(
                           "No clothes exist",
                           style:
-                              TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 20),
+                              TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                         ),
                         SizedBox(height: 8),
                       ],
