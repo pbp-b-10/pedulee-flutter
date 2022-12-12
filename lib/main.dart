@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pedulee/widgets/drawer.dart';
 import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:pedulee/apps/helper/session.dart';
 import 'package:pedulee/login_page.dart';
 
 import 'home_screen.dart';

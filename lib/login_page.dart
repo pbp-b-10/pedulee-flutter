@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pedulee/main.dart';
+import 'package:pedulee/apps/helper/session.dart';
 import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+// import 'package:pbp_django_auth/pbp_django_auth.dart';
+
 import 'package:pedulee/register_page.dart';
 import 'package:pedulee/home_screen.dart';
 

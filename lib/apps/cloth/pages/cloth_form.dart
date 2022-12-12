@@ -3,7 +3,7 @@ import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/widgets/appbar.dart';
 import 'package:pedulee/widgets/footer.dart';
 import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:pedulee/apps/helper/session.dart';
 import 'dart:convert' as convert;
 
 class ClothFormPage extends StatefulWidget {
@@ -212,65 +212,65 @@ class _ClothFormPageState extends State<ClothFormPage> {
                       style: TextStyle(fontSize: 20),
                     ),
                     onPressed: () async {
-                        final response = await request.postJson(
-                            "https://pedulee.up.railway.app/cloth/create-flutter",
-                            convert.jsonEncode({
-                              'model': model.toString(),
-                              'material': material.toString(),
-                              'tipe': tipe.toString(),
-                            }));
+                      final response = await request.postJson(
+                          "https://pedulee.up.railway.app/cloth/create-flutter",
+                          convert.jsonEncode({
+                            'model': model.toString(),
+                            'material': material.toString(),
+                            'tipe': tipe.toString(),
+                          }));
 
-                        if (response["status"] == true) {
-                          // Code here will run if the login succeeded.
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            behavior: SnackBarBehavior.floating,
-                            backgroundColor: Colors.transparent,
-                            elevation: 0,
-                            content: Container(
-                              padding: const EdgeInsets.all(10),
-                              height: 50,
-                              decoration: const BoxDecoration(
-                                color: Colors.green,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  "Thank you for your donation!",
-                                  textAlign: TextAlign.center,
-                                ),
+                      if (response["status"] == true) {
+                        // Code here will run if the login succeeded.
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.transparent,
+                          elevation: 0,
+                          content: Container(
+                            padding: const EdgeInsets.all(10),
+                            height: 50,
+                            decoration: const BoxDecoration(
+                              color: Colors.green,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: const Center(
+                              child: Text(
+                                "Thank you for your donation!",
+                                textAlign: TextAlign.center,
                               ),
                             ),
-                          ));
-                          // ignore: use_build_context_synchronously
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ClothFormPage()),
-                          );
-                        } else {
-                          // Code here will run if the login failed (wrong username/password).
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            behavior: SnackBarBehavior.floating,
-                            backgroundColor: Colors.transparent,
-                            elevation: 0,
-                            content: Container(
-                              padding: const EdgeInsets.all(10),
-                              height: 50,
-                              decoration: const BoxDecoration(
-                                color: Colors.red,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  "Sorry, something went wrong",
-                                  textAlign: TextAlign.center,
-                                ),
+                          ),
+                        ));
+                        // ignore: use_build_context_synchronously
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ClothFormPage()),
+                        );
+                      } else {
+                        // Code here will run if the login failed (wrong username/password).
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.transparent,
+                          elevation: 0,
+                          content: Container(
+                            padding: const EdgeInsets.all(10),
+                            height: 50,
+                            decoration: const BoxDecoration(
+                              color: Colors.red,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: const Center(
+                              child: Text(
+                                "Sorry, something went wrong",
+                                textAlign: TextAlign.center,
                               ),
                             ),
-                          ));
-                        }
+                          ),
+                        ));
+                      }
                     },
                   ),
                 ],
