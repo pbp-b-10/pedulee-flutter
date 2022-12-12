@@ -1,9 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:pedulee/apps/project/card.dart';
+import 'package:pedulee/models/project.dart';
+import 'package:pedulee/models/storage.dart';
 import 'package:pedulee/widgets/drawer.dart';
+import 'package:pedulee/widgets/footer.dart';
+import 'package:pedulee/widgets/title.dart';
+import 'package:pedulee/widgets/appbar.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late List<DjangoModelItem<Project>>? data;
+
+  @override
+  void initState() {
+    super.initState();
+    data = getLocalData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +40,7 @@ class HomeScreen extends StatelessWidget {
       children: [
         SizedBox(
           height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           child: Image.asset(
             'assets/bg.jpg',
             fit: BoxFit.fill, //agar rounded corner imagenya
@@ -37,118 +57,40 @@ class HomeScreen extends StatelessWidget {
               height: 20,
             ),
             Center(child: titleWidget('On Going Project')),
-            const SizedBox(
-              height: 30,
+            FutureBuilder<List<DjangoModelItem<Project>>>(
+              future: fetchData(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  data = snapshot.requireData;
+                }
+                if (data != null) {
+                  return SingleChildScrollView(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 25, vertical: 40),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: data!
+                              .map<Widget>(
+                                (e) => ProjectCard.fromProject(e.fields),
+                              )
+                              .expand((element) => [
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    element,
+                                  ])
+                              .toList()),
+                    ),
+                  );
+                }
+                return const Text("No internet");
+              },
             ),
-            cardWidget(
-                title: 'Air untuk Jayapura',
-                content:
-                    'Debit air dari sejumlah mata air di Kota Jayapura turun drastis hingga lebih dari 50 persen',
-                imagePath: 'assets/wcwlwmg3ipwxtdjojfzw.jpg'),
-            cardWidget(
-                title: 'Bantuan untuk Ambon',
-                content:
-                    'Sebanyak 1.135 keluarga yang terdiri atas 4.706 jiwa, menghadapi dampak banjir dan tanah longsor di wilayah Kota Ambon',
-                imagePath: 'assets/61f8d613d1413.jpg'),
-            cardWidget(
-                title: 'Halmahera Barat Terguncang',
-                content:
-                    'Terjadi gempa bumi berkekuatan 5.9 M pada kedalaman 10 km di Kabupaten Halmahera Barat',
-                imagePath: 'assets/1674672637.jpeg'),
-            cardWidget(
-                title: 'Musi Rawas Utara Tertiup Angin',
-                content:
-                    'BPBD Sumatera Selatan mencatat 58 rumah warga di Kabupaten Musi Rawas Utara rusak dihantam angin puting beliung',
-                imagePath: 'assets/kfbdhjbgragjkre.jpg'),
             footerWidget()
           ],
         ),
       ],
-    );
-  }
-
-  Column footerWidget() => Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(
-            height: 30,
-          ),
-          const Divider(
-            color: Colors.black54,
-            thickness: 1,
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          titleWidget('Pedulee'),
-          const SizedBox(
-            height: 20,
-          ),
-          Text('Proyek Tengah Semester PBP B-10'),
-          const SizedBox(
-            height: 30,
-          ),
-          titleWidget('Contributors'),
-          const SizedBox(
-            height: 20,
-          ),
-          Center(
-            child: Text(
-                'Alvin Widi Nugroho \nDaffa Muhammad Faizan \nGhayda Rafa Hernawan \nMarietha Asnat Nauli Sitompul \nRakhan Yusuf Rivesa'),
-          )
-        ],
-      );
-
-  Widget cardWidget(
-      {required String title,
-      required String content,
-      required String imagePath}) {
-    return Padding(
-      padding: const EdgeInsets.all(30),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(30),
-        child: Container(
-          decoration: BoxDecoration(color: Colors.white.withOpacity(0.5)),
-          child: Column(
-            children: [
-              Image.asset(
-                imagePath,
-                fit: BoxFit.fill,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 30,
-                ),
-                child: titleWidget(title),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(30),
-                child: Text(
-                  content,
-                  style: const TextStyle(fontSize: 18),
-                ),
-              ),
-              ElevatedButton(onPressed: () {}, child: const Text('More Info')),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  AppBar appBarWidget() {
-    return AppBar(
-      backgroundColor: Colors.orangeAccent.shade100.withOpacity(0.5),
-      title: titleWidget('Pedulee'),
-      centerTitle: true,
-    );
-  }
-
-  Widget titleWidget(String s) {
-    return Text(
-      s,
-      style: const TextStyle(
-          color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
     );
   }
 }
