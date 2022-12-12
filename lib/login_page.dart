@@ -1,8 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:pedulee/apps/helper/session.dart';
 import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+// import 'package:pbp_django_auth/pbp_django_auth.dart';
+
 import 'package:pedulee/register_page.dart';
 import 'package:pedulee/home_screen.dart';
 
@@ -172,7 +174,7 @@ class LoginPageState extends State<LoginPage> {
                       // ignore: use_build_context_synchronously
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => const HomeScreen()),
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
                       );
                     } else {
                       // Code here will run if the login failed (wrong username/password).

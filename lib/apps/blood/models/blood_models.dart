@@ -1,31 +1,65 @@
-import "dart:convert";
+// To parse this JSON data, do
+//
+//     final blood = bloodFromJson(jsonString);
 
-class Blood{
+import 'dart:convert';
+
+List<Blood> bloodFromJson(String str) => List<Blood>.from(json.decode(str).map((x) => Blood.fromJson(x)));
+
+String bloodToJson(List<Blood> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+class Blood {
   Blood({
-    required this.golonganDarah,
+    required this.pk,
+    required this.fields,
+  });
+
+  int pk;
+  Fields fields;
+
+  factory Blood.fromJson(Map<String, dynamic> json) => Blood(
+    pk: json["pk"],
+    fields: Fields.fromJson(json["fields"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "pk": pk,
+    "fields": fields.toJson(),
+  };
+}
+
+class Fields {
+  Fields({
+    required this.user,
+    required this.date,
+    required this.golongan,
     required this.rhesus,
     required this.penyakitBawaan,
     required this.lokasiDonor,
-});
-  final String golonganDarah;
-  final String rhesus;
-  final String penyakitBawaan;
-  final String lokasiDonor;
+  });
 
-  factory Blood.fromRawJson(String str) => Blood.fromJson(json.decode(str));
-  String toRawJson()=> json.encode(toJson());
+  int user;
+  DateTime date;
+  String golongan;
+  String rhesus;
+  String penyakitBawaan;
+  String lokasiDonor;
 
-  factory Blood.fromJson(Map<String,dynamic>json)=>Blood(
-    golonganDarah: json["fields"]["golonganDarah"],
-    rhesus: json["fields"]["rhesus"],
-    penyakitBawaan: json["fields"]["penyakitBawaan"],
-    lokasiDonor: json["fields"]["lokasiDonor"]
+  factory Fields.fromJson(Map<String, dynamic> json) => Fields(
+    user: json["user"],
+    date: DateTime.parse(json["date"]),
+    golongan: json["golongan"],
+    rhesus: json["rhesus"],
+    penyakitBawaan: json["penyakit_bawaan"],
+    lokasiDonor: json["lokasi_donor"],
   );
 
-  Map<String,dynamic>toJson()=>{
-    "golonganDarah" : golonganDarah,
-    "rhesus" : rhesus,
-    "penyakitBawaan":penyakitBawaan,
-    "lokasiDonor":lokasiDonor,
+  Map<String, dynamic> toJson() => {
+    "user": user,
+    "date": "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
+    "golongan": golongan,
+    "rhesus": rhesus,
+    "penyakit_bawaan": penyakitBawaan,
+    "lokasi_donor": lokasiDonor,
   };
 }

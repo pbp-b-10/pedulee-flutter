@@ -23,6 +23,5 @@ Future<List<Blood>> fetchBlood() async {
       listBlood.add(Blood.fromJson(d));
     }
   }
-
   return listBlood;
 }

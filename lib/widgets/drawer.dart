@@ -9,7 +9,11 @@ import 'package:pedulee/apps/blood/pages/blood.dart';
 import 'package:pedulee/apps/cloth/pages/cloth_history.dart';
 import 'package:pedulee/apps/cloth/pages/cloth_form.dart';
 import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:pedulee/apps/helper/session.dart';
+
+import '../apps/volunteer/form.dart';
+import '../apps/volunteer/history.dart';
+import '../projects_screen.dart';
 
 Drawer drawerBuild(BuildContext context) {
   final request = context.watch<CookieRequest>();
@@ -30,6 +34,40 @@ Drawer drawerBuild(BuildContext context) {
               );
             },
           ),
+          // Menambahkan clickable menu
+          ListTile(
+            title: const Text('Projects'),
+            onTap: () {
+              // Route menu ke counter
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const ProjectsScreen()),
+              );
+            },
+          ),
+          // Menambahkan clickable menu
+          ExpansionTile(title: const Text("Volunteer"), children: [
+            ListTile(
+              title: const Text('Participate'),
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const VolunteerFormPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text("Volunteer History"),
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const VolunteerPage()),
+                );
+              },
+            ),
+          ]),
           ExpansionTile(
             title: const Text("Donation"),
             children: <Widget>[
@@ -46,23 +84,22 @@ Drawer drawerBuild(BuildContext context) {
               ),
             ],
           ),
-          ExpansionTile(title: const Text("Clothes"), children: [
+          ExpansionTile(title: Text("Clothes"), children: [
             ListTile(
-              title: const Text("Add Clothes"),
+              title: Text("Add Clothes"),
               onTap: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const ClothFormPage()),
+                  MaterialPageRoute(builder: (context) => ClothFormPage()),
                 );
               },
             ),
             ListTile(
-              title: const Text("Clothes History"),
+              title: Text("Clothes History"),
               onTap: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const ClothPage()),
+                  MaterialPageRoute(builder: (context) => ClothPage()),
                 );
               },
             ),
@@ -89,7 +126,7 @@ Drawer drawerBuild(BuildContext context) {
             ),
           ]),
           ListTile(
-            title: const Text("Logout"),
+            title: Text("Logout"),
             onTap: () async {
               final response = await request
                   .logout("https://pedulee.up.railway.app/auth/logout/");
@@ -117,7 +154,7 @@ Drawer drawerBuild(BuildContext context) {
                 // ignore: use_build_context_synchronously
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
+                  MaterialPageRoute(builder: (context) => LoginPage()),
                 );
               } else {
                 // Code here will run if the login failed (wrong username/password).

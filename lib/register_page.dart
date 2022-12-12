@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:pedulee/apps/helper/session.dart';
 import 'package:pedulee/login_page.dart';
 import 'dart:convert' as convert;
 
@@ -196,8 +196,7 @@ class RegisterPageState extends State<RegisterPage> {
                                   return "Please fill in your password confirmation";
                                 } else if (value != password1) {
                                   return "Those passwors didn't match!";
-                                }
-                                else {
+                                } else {
                                   return null;
                                 }
                               },

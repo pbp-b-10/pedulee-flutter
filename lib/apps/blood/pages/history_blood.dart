@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttericon/linecons_icons.dart';
 import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/widgets/appbar.dart';
 import 'package:pedulee/apps/blood/models/blood_models.dart';
@@ -39,7 +38,7 @@ class _HistoryBloodPageState extends State<HistoryBloodPage>{
                     return Column(
                       children: const [
                         Text(
-                          "No clothes exist",
+                          "Belum ada riwayat ya",
                           style:
                           TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                         ),
@@ -54,20 +53,45 @@ class _HistoryBloodPageState extends State<HistoryBloodPage>{
                             child: Padding(
                               padding: const EdgeInsets.all(10),
                               child: ListTile(
-                                leading: const Icon(Linecons.t_shirt),
                                 title: Text(
-                                  "${snapshot.data![index].fields.clothModel}",
+                                  "${snapshot.data![index].fields.user}",
                                   style: const TextStyle(
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                subtitle: Text(
-                                  "${snapshot.data![index].fields.material}, ${snapshot.data![index].fields.type}",
-                                  style: const TextStyle(
-                                    fontSize: 15.0,
-                                    color: Colors.blueGrey,
-                                  ),
+                                subtitle: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Golongan Darah: ${snapshot.data![index].fields.golongan}",
+                                      style: const TextStyle(
+                                        fontSize: 15.0,
+                                        color: Colors.blueGrey,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Rhesus: ${snapshot.data![index].fields.rhesus}",
+                                      style: const TextStyle(
+                                        fontSize: 15.0,
+                                        color: Colors.blueGrey,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Penyakit Bawaan: ${snapshot.data![index].fields.penyakit_bawaan}",
+                                      style: const TextStyle(
+                                        fontSize: 15.0,
+                                        color: Colors.blueGrey,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Lokasi Donor: ${snapshot.data![index].fields.lokasi_donor}",
+                                      style: const TextStyle(
+                                        fontSize: 15.0,
+                                        color: Colors.blueGrey,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 trailing: Text(
                                   snapshot.data![index].fields.date.toString().substring(0, 10),

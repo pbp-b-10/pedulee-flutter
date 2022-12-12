@@ -4,6 +4,9 @@ import 'package:pedulee/apps/blood/pages/history_blood.dart';
 import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/apps/blood/models/blood_models.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+
+import '../../helper/session.dart';
 
 class BloodDonationPage extends StatefulWidget {
   const BloodDonationPage({super.key});
@@ -32,6 +35,8 @@ class _BloodDonationPageState extends State<BloodDonationPage>{
 
   @override
   Widget build(BuildContext context) {
+    const postURL = "https://pedulee.up.railway.app/history/api/blood/";
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Donasi (Donor) Darah"),
@@ -190,15 +195,21 @@ class _BloodDonationPageState extends State<BloodDonationPage>{
                      borderRadius: BorderRadius.circular(32.0)),
                     minimumSize: Size(300,50)
                  ),
-                 onPressed: () {
+                 onPressed: () async {
                    if (_formKey.currentState!.validate()) {
-
+                     final statusCode = await request.postForm(postURL, {
+                       'golonganDarah': golonganDarah,
+                       'rhesus': rhesus,
+                       'penyakitBawaan':penyakitBawaan,
+                       'lokasiDonor':lokasiDonor,
+                     });
                      clearText();
+                     counter++;
                      showDialog(
                          context: context,
                          builder: (context)=>AlertDialog(
                            title: Text("Nomor Antrian"),
-                           content : Text(getNomorAntrian().toString()),
+                           content : Text(counter.toString()),
                            actions: [
                              TextButton(
                                child: Text("Detail"),
@@ -237,27 +248,5 @@ class _BloodDonationPageState extends State<BloodDonationPage>{
         ),
       ),
     );
-  }
-  Future<int> getNomorAntrian() async {
-    String url = "https://pedulee.up.railway.app/history/api/blood/";
-    var response = await http.get(Uri.parse(url), headers: <String, String>{
-      "Access-Control-Allow-Origin": "*",
-      'Content-Type': 'application/json',
-      // 'content-Type': 'application/json;charset=UTF-8',
-      // 'Authorization': 'Bearer $_jwtToken',
-    });
-
-    print(response);
-    print(json.decode(response.body));
-
-    if (response.statusCode == 200) {
-      return 0;
-      // final Map<String, dynamic> jsonResponse = json.decode(response.body);
-      // List<Blood> dataBlood =  Blood.fromJson(jsonResponse);
-      // int nomor = dataBlood.where((i) => i.isAnimated).toList().length;
-
-    } else {
-      throw Exception('Tagihan gagal ditampilkan');
-    }
   }
 }

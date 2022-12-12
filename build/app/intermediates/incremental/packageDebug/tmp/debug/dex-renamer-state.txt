@@ -1,0 +1,4 @@
+#Mon Dec 12 13:34:06 ICT 2022
+base.0=C\:\\Users\\user\\OneDrive\\Documents\\PBP\\flutter-b10\\pedulee-mobile\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
