@@ -23,9 +23,15 @@ class ProjectCard extends StatelessWidget {
         imageURL: project.image,
         url: project.link);
   }
-  void onClickMoreInfo() {
-    // Do button click here
+  
+  void onClickMoreInfo() async {
+    if (await canLaunchUrlString(url)) {
+      await launchUrlString(url);
+    } else {
+      throw "Could not launch $url";
+    }
   }
+  
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
