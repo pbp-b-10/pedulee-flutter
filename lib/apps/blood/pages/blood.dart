@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pedulee/apps/blood/pages/history_blood.dart';
 import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/apps/blood/models/blood_models.dart';
+import 'dart:convert'as convert;
 
 class BloodDonationPage extends StatefulWidget {
   const BloodDonationPage({super.key});
@@ -10,19 +12,20 @@ class BloodDonationPage extends StatefulWidget {
 }
 class _BloodDonationPageState extends State<BloodDonationPage>{
   final _formKey = GlobalKey<FormState>();
-  String? _golonganDarah;
-  String? _rhesus;
-  String _penyakitBawaan = "";
-  String? _lokasiDonor;
+  String? golonganDarah;
+  String? rhesus;
+  String penyakitBawaan = "";
+  String? lokasiDonor;
+  int counter = 0;
   final _controllerPenyakitBawaan = TextEditingController();
 
   void clearText() {
     _controllerPenyakitBawaan.clear();
 
     setState(() {
-      _golonganDarah = null;
-      _rhesus = null;
-      _lokasiDonor = null;
+      golonganDarah = null;
+      rhesus = null;
+      lokasiDonor = null;
     });
   }
 
@@ -52,7 +55,7 @@ class _BloodDonationPageState extends State<BloodDonationPage>{
                      border: OutlineInputBorder(borderRadius:BorderRadius.circular(15.0))
                  ),
                  hint: const Text("Golongan Darah"),
-                 value:_golonganDarah,
+                 value:golonganDarah,
                  validator: (value)=>
                  value == null ? "Golongan Darah" : null,
                  items:const <DropdownMenuItem<String>>[
@@ -75,7 +78,7 @@ class _BloodDonationPageState extends State<BloodDonationPage>{
                  ],
                  onChanged: (String? value){
                    setState(() {
-                     _golonganDarah = value!;
+                     golonganDarah = value!;
                    });
                  },
                ),
@@ -90,7 +93,7 @@ class _BloodDonationPageState extends State<BloodDonationPage>{
                    border: OutlineInputBorder(borderRadius:BorderRadius.circular(15.0)),
                  ),
                  hint: const Text("Rhesus"),
-                 value: _rhesus,
+                 value: rhesus,
                  validator: (value) =>
                  value == null ? "Rhesus" : null,
                  items: const<DropdownMenuItem<String>>[
@@ -105,7 +108,7 @@ class _BloodDonationPageState extends State<BloodDonationPage>{
                  ],
                  onChanged: (String? value){
                    setState(() {
-                     _rhesus = value!;
+                     rhesus = value!;
                    });
                  },
                ),
@@ -120,7 +123,7 @@ class _BloodDonationPageState extends State<BloodDonationPage>{
                      border: OutlineInputBorder(borderRadius:BorderRadius.circular(15.0))
                  ),
                hint: const Text ("Lokasi Donor"),
-               value: _lokasiDonor,
+               value: lokasiDonor,
                validator: (value) =>
                value == null ? "Lokasi Donor":null,
                items: const <DropdownMenuItem<String>>[
@@ -143,7 +146,7 @@ class _BloodDonationPageState extends State<BloodDonationPage>{
                  ],
                  onChanged: (String? value){
                    setState(() {
-                     _lokasiDonor = value!;
+                     lokasiDonor = value!;
                    });
                  },
                ),
@@ -155,14 +158,14 @@ class _BloodDonationPageState extends State<BloodDonationPage>{
                controller: _controllerPenyakitBawaan,
                decoration: InputDecoration(
                  hintText: "Contoh : Jantung",
-                 labelText: "Penyakit Bawaan (jika ada)",
+                 labelText: 'Penyakit Bawaan (jika tidak ada isi "-")',
                  border: OutlineInputBorder(
-                   borderRadius: BorderRadius.circular(5.0),
+                   borderRadius: BorderRadius.circular(15.0),
                  ),
                ),
                onChanged: (String? value){
                  setState(() {
-                   _penyakitBawaan = value!;
+                   penyakitBawaan = value!;
                  });
                },
                validator: (String? value){
@@ -186,10 +189,26 @@ class _BloodDonationPageState extends State<BloodDonationPage>{
                      borderRadius: BorderRadius.circular(32.0)),
                     minimumSize: Size(300,50)
                  ),
-                 onPressed: (){
-                   if(_formKey.currentState!.validate()){
-                     ListBlood.data.add(Blood(_golonganDarah!, _rhesus!, _penyakitBawaan, _lokasiDonor!));
+                 onPressed: () {
+                   if (_formKey.currentState!.validate()) {
+                      counter++;
                      clearText();
+                     showDialog(
+                         context: context,
+                         builder: (context)=>AlertDialog(
+                           title: Text("Nomor Antrian"),
+                           content : Text(counter.toString()),
+                           actions: [
+                             TextButton(
+                               child: Text("Detail"),
+                               onPressed: () => Navigator.pushAndRemoveUntil(
+                                   context, MaterialPageRoute(builder: (context) => HistoryBloodPage()), (Route<dynamic>route) => false),),
+                             TextButton(
+                               child: Text("Close"),
+                             onPressed: ()=> Navigator.pop(context),)
+                           ],
+                         )
+                     );
                    }
                  },
                  child: const Text("Simpan",
@@ -212,7 +231,6 @@ class _BloodDonationPageState extends State<BloodDonationPage>{
               style: TextStyle(color:Colors.black),),
              ),
              ]),
-
            ],
           )
         ),
