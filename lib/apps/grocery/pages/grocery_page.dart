@@ -190,7 +190,7 @@ class _GroceryDonationPageState extends State<GroceryDonationPage> {
                         backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 243, 201, 33)),
                       ),
                       onPressed: () async {
-                        await request.postJson(
+                        final response = await request.postJson(
                           "https://pedulee.up.railway.app/groceries/create",
                           convert.jsonEncode({
                             'donasi': _donasi.toString(), 
@@ -201,11 +201,63 @@ class _GroceryDonationPageState extends State<GroceryDonationPage> {
                             'ccnumber': _ccNumber.toString(),
                           })
                         );
+                        // Navigator.pushReplacement(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //       builder: (context) => const GroceryDonationPage()),
+                        // );
+                        
+                      if (response["status"] == true) {
+                        // Code here will run if the login succeeded.
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.transparent,
+                          elevation: 0,
+                          content: Container(
+                            padding: const EdgeInsets.all(10),
+                            height: 50,
+                            decoration: const BoxDecoration(
+                              color: Colors.green,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: const Center(
+                              child: Text(
+                                "Thank you for your donation!",
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ));
+                        // ignore: use_build_context_synchronously
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const GroceryDonationPage()),
                         );
+                      } else {
+                        // Code here will run if the login failed (wrong username/password).
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.transparent,
+                          elevation: 0,
+                          content: Container(
+                            padding: const EdgeInsets.all(10),
+                            height: 50,
+                            decoration: const BoxDecoration(
+                              color: Colors.red,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: const Center(
+                              child: Text(
+                                "Sorry, something went wrong",
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ));
+                      }
                         
                       },
                     ),
