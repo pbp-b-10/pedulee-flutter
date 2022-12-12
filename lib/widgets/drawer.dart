@@ -13,6 +13,9 @@ import 'package:pedulee/apps/cloth/pages/cloth_history.dart';
 import 'package:pedulee/apps/cloth/pages/cloth_form.dart';
 import 'package:provider/provider.dart';
 import 'package:pedulee/apps/helper/session.dart';
+import 'package:pedulee/apps/grocery/pages/grocery_page.dart';
+import 'package:pedulee/apps/grocery/pages/grocery_history.dart';
+
 
 Drawer drawerBuild(BuildContext context) {
   final request = context.watch<CookieRequest>();
@@ -83,7 +86,28 @@ Drawer drawerBuild(BuildContext context) {
               ),
             ],
           ),
-          ExpansionTile(title: Text("Clothes"), children: [
+          ExpansionTile(title: Text("Grocery"), children: [
+            ListTile(
+              title: Text("Add Grocery"),
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const GroceryDonationPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text("Grocery History"),
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const GroceryPage()),
+                );
+              },
+            ),
+          ]),
+
+                    ExpansionTile(title: Text("Clothes"), children: [
             ListTile(
               title: Text("Add Clothes"),
               onTap: () {

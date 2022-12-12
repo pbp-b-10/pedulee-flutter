@@ -38,49 +38,53 @@ class Grocery {
 
 class Fields{
   static List<Fields> groceries = [];
-  late String name;
-  late int donasi;  
-  late String sembakoChoices;
-  late int amount;
-  late String paymentMethod;
-  late DateTime tanggal;
-  late int ccNumber;
+  int user;
+  String username;  
+  int amount;
+  String pmethod;
+  DateTime tanggal;
+  int ccnumber;
+  int donasi;  
+  String sembako;
 
 
 
   Fields({
-    required this.name,
+    required this.user,
+    required this.username,    
     required this.donasi,
-    required this.sembakoChoices,
+    required this.sembako,
     required this.amount,
-    required this.paymentMethod,
+    required this.pmethod,
     required this.tanggal,
-    required this.ccNumber
+    required this.ccnumber
 
 
   });
   factory Fields.fromJson(Map<String, dynamic> json) => Fields(
-      name: json["name"],
+      user: json["user"],
+      username: json["username"],      
       donasi: json["donasi"],
-      sembakoChoices: json["sembakoChoices"],
+      sembako: json["sembako"],
       amount: json["amount"],
-      paymentMethod: json["paymentMethod"],
+      pmethod: json["pmethod"],
       tanggal: DateTime.parse(json["tanggal"]),
-      ccNumber: json["ccNumber"],
+      ccnumber: json["ccnumber"],
 
 
     );
 
   Map<String, dynamic> toJson() => {
-      "name": name, 
+      "user": user,
+      "username": username,      
       "donasi": donasi, 
-      "sembakoChoices": sembakoChoices,
+      "sembako": sembako,
       "amount": amount,
-      "paymentMethod": paymentMethod,
+      "pmethod": pmethod,
       // "tanggal": tanggal,
       "tanggal": "${tanggal.year.toString().padLeft(4, '0')}-${tanggal.month.toString().padLeft(2, '0')}-${tanggal.day.toString().padLeft(2, '0')}",
 
-      "ccNumber": ccNumber
+      "ccnumber": ccnumber
 
   };
 
