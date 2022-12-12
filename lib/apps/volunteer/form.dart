@@ -92,22 +92,15 @@ class _VolunteerFormPageState extends State<VolunteerFormPage> {
 
     void onSubmit() async {
       if (_formKey.currentState!.validate()) {
-        try {
-          final response = await request.postJson(
-              postURL,
-              jsonEncode({
-                'project': selected?.pk.toString(),
-                'divisi': divisi,
-              }));
+        final statusCode = await request.postForm(postURL, {
+          'project': selected?.pk.toString(),
+          'divisi': divisi,
+        });
 
-          if (response["status"] == true) {
-            successToast();
-          } else {
-            errorToast();
-          }
-        } catch (e) {
+        if (statusCode == 201) {
+          successToast();
+        } else {
           errorToast();
-          print(e);
         }
       }
     }
