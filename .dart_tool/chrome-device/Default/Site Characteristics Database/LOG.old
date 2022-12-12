@@ -1,1 +1,7 @@
-2022/12/12-21:00:59.204 309a0 Reusing MANIFEST C:\Users\rakha\AppData\Local\Temp\flutter_tools.6fd1c33\flutter_tools_chrome_device.64f58959\Default\Site Characteristics Database/MANIFEST-000001
+2022/12/12-21:09:17.625 31218 Reusing MANIFEST C:\Users\rakha\AppData\Local\Temp\flutter_tools.46260604\flutter_tools_chrome_device.6c27b7e\Default\Site Characteristics Database/MANIFEST-000001
+2022/12/12-21:09:17.626 31218 Recovering log #3
+2022/12/12-21:09:17.626 31218 Level-0 table #6: started
+2022/12/12-21:09:17.630 31218 Level-0 table #6: 406 bytes OK
+2022/12/12-21:09:17.631 31218 Recovering log #6
+2022/12/12-21:09:17.631 31218 Reusing old log C:\Users\rakha\AppData\Local\Temp\flutter_tools.46260604\flutter_tools_chrome_device.6c27b7e\Default\Site Characteristics Database/000006.log 
+2022/12/12-21:09:17.634 31218 Delete type=0 #3

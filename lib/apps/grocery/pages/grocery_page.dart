@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/apps/grocery/models/grocery_model.dart';
-import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/widgets/appbar.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:pedulee/apps/grocery/pages/grocery_history.dart';
 import 'dart:convert' as convert;
 
 
@@ -193,12 +193,12 @@ class _GroceryDonationPageState extends State<GroceryDonationPage> {
                         await request.postJson(
                           "https://pedulee.up.railway.app/groceries/create",
                           convert.jsonEncode({
-                            'donasi': _donasi, 
-                            'sembako': _jenisSembako,
-                            'amount': _amount,
-                            'pmethod': _jenisPayment,
-                            'date': tanggal,
-                            'ccnumber': _ccNumber
+                            'donasi': _donasi.toString(), 
+                            'sembako': _jenisSembako.toString(),
+                            'amount': _amount.toString(),
+                            'pmethod': _jenisPayment.toString(),
+                            'date': tanggal.toString(),
+                            'ccnumber': _ccNumber.toString(),
                           })
                         );
                         Navigator.pushReplacement(
