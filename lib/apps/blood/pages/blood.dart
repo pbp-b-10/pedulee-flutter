@@ -1,8 +1,9 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:pedulee/apps/blood/pages/history_blood.dart';
 import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/apps/blood/models/blood_models.dart';
-import 'dart:convert'as convert;
+import 'package:http/http.dart' as http;
 
 class BloodDonationPage extends StatefulWidget {
   const BloodDonationPage({super.key});
@@ -191,13 +192,13 @@ class _BloodDonationPageState extends State<BloodDonationPage>{
                  ),
                  onPressed: () {
                    if (_formKey.currentState!.validate()) {
-                      counter++;
+
                      clearText();
                      showDialog(
                          context: context,
                          builder: (context)=>AlertDialog(
                            title: Text("Nomor Antrian"),
-                           content : Text(counter.toString()),
+                           content : Text(getNomorAntrian().toString()),
                            actions: [
                              TextButton(
                                child: Text("Detail"),
@@ -236,5 +237,27 @@ class _BloodDonationPageState extends State<BloodDonationPage>{
         ),
       ),
     );
+  }
+  Future<int> getNomorAntrian() async {
+    String url = "https://pedulee.up.railway.app/history/api/blood/";
+    var response = await http.get(Uri.parse(url), headers: <String, String>{
+      "Access-Control-Allow-Origin": "*",
+      'Content-Type': 'application/json',
+      // 'content-Type': 'application/json;charset=UTF-8',
+      // 'Authorization': 'Bearer $_jwtToken',
+    });
+
+    print(response);
+    print(json.decode(response.body));
+
+    if (response.statusCode == 200) {
+      return 0;
+      // final Map<String, dynamic> jsonResponse = json.decode(response.body);
+      // List<Blood> dataBlood =  Blood.fromJson(jsonResponse);
+      // int nomor = dataBlood.where((i) => i.isAnimated).toList().length;
+
+    } else {
+      throw Exception('Tagihan gagal ditampilkan');
+    }
   }
 }

@@ -14,12 +14,14 @@ class Blood{
 
   factory Blood.fromRawJson(String str) => Blood.fromJson(json.decode(str));
   String toRawJson()=> json.encode(toJson());
+
   factory Blood.fromJson(Map<String,dynamic>json)=>Blood(
     golonganDarah: json["fields"]["golonganDarah"],
     rhesus: json["fields"]["rhesus"],
     penyakitBawaan: json["fields"]["penyakitBawaan"],
     lokasiDonor: json["fields"]["lokasiDonor"]
   );
+
   Map<String,dynamic>toJson()=>{
     "golonganDarah" : golonganDarah,
     "rhesus" : rhesus,

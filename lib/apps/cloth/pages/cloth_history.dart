@@ -1,19 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttericon/linecons_icons.dart';
-import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/widgets/appbar.dart';
-import 'package:pedulee/apps/blood/models/blood_models.dart';
-import 'fetch_blood.dart';
+import 'package:pedulee/widgets/drawer.dart';
+import 'package:pedulee/apps/cloth/pages/fetchcloth.dart';
+import 'package:fluttericon/linecons_icons.dart';
 
-class HistoryBloodPage extends StatefulWidget{
-  const HistoryBloodPage({super.key});
+class ClothPage extends StatefulWidget {
+  const ClothPage({Key? key}) : super(key: key);
 
   @override
-  State<HistoryBloodPage> createState() => _HistoryBloodPageState();
+  ClothPageState createState() => ClothPageState();
 }
-class _HistoryBloodPageState extends State<HistoryBloodPage>{
-  final _formKey = GlobalKey<FormState>();
+
+class ClothPageState extends State<ClothPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +28,7 @@ class _HistoryBloodPageState extends State<HistoryBloodPage>{
             ),
           ),
           FutureBuilder(
-              future: fetchBlood(),
+              future: fetchCloth(),
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.data == null) {
                   return const Center(child: CircularProgressIndicator());
@@ -41,7 +39,7 @@ class _HistoryBloodPageState extends State<HistoryBloodPage>{
                         Text(
                           "No clothes exist",
                           style:
-                          TextStyle(color: Color(0xff59A5D8), fontSize: 20),
+                              TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                         ),
                         SizedBox(height: 8),
                       ],
