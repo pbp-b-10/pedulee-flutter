@@ -68,10 +68,10 @@ class ClothPageState extends State<ClothPage> {
                                   ),
                                 ),
                                 trailing: Text(
-                                  snapshot.data![index].fields.date.toString().substring(0, 10),
+                                  "${snapshot.data![index].fields.username}, ${snapshot.data![index].fields.date.toString().substring(0, 10)}",
                                   style: const TextStyle(
                                     color: Colors.black45,
-                                    fontSize: 16,
+                                    fontSize: 15,
                                   ),
                                 ),
                               ),

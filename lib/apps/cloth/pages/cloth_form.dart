@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:pedulee/apps/cloth/pages/cloth_history.dart';
 import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/widgets/appbar.dart';
 import 'package:provider/provider.dart';
@@ -248,7 +249,7 @@ class ClothFormPageState extends State<ClothFormPage> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ClothFormPage()),
+                              builder: (context) => const ClothPage()),
                         );
                       } else {
                         // Code here will run if the login failed (wrong username/password).
