@@ -2,8 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:pedulee/apps/project/card.dart';
-import 'package:pedulee/models/django_model.dart';
+import 'package:pedulee/models/storage.dart';
 import 'package:pedulee/models/project.dart';
+import 'package:pedulee/widgets/appbar.dart';
 import 'package:pedulee/widgets/drawer.dart';
 
 class ProjectsScreen extends StatefulWidget {
@@ -27,9 +28,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
+      appBar: appBarWidget(),
       // Menambahkan drawer menu
       drawer: drawerBuild(context),
       body: Stack(children: [

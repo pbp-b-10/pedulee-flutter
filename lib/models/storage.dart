@@ -1,7 +1,13 @@
-import 'package:pedulee/models/serializer.dart';
+import 'package:localstorage/localstorage.dart';
+
+final LocalStorage storage = LocalStorage('proto5');
 
 abstract class JSONAble {
   Map<String, dynamic> toJson();
+}
+
+abstract class Serializer<T> {
+  T fromJson(Map<String, dynamic> json);
 }
 
 class DjangoModelItem<E extends JSONAble> extends JSONAble {

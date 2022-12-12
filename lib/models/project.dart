@@ -1,11 +1,8 @@
 import 'dart:convert';
 
-import 'package:pedulee/models/django_model.dart';
-import 'package:pedulee/models/serializer.dart';
+import 'package:pedulee/models/storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:localstorage/localstorage.dart';
 
-final LocalStorage storage = LocalStorage('proto3');
 const currentModelStorageName = "project_data_list";
 
 class Project extends JSONAble {

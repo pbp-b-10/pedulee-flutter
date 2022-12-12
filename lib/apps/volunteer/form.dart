@@ -1,14 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:pedulee/models/django_model.dart';
+import 'package:pedulee/apps/helper/session.dart';
+import 'package:pedulee/models/storage.dart';
 import 'package:pedulee/models/project.dart';
-import 'package:pedulee/models/volunteer.dart';
+import 'package:pedulee/models/volunteer.dart' as volunteer_pkg;
 import 'package:pedulee/widgets/drawer.dart';
-
-String exampleJSON =
-    '[{"model": "pedulee.project", "pk": 1, "fields": {"title": "Air untuk Jayapura", "description": "Debit air dari sejumlah mata air di Kota Jayapura turun drastis hingga lebih dari 50 persen", "link": "https://www.kompas.id/baca/nusantara/2020/09/10/kota-jayapura-terancam-krisis-air-bersih", "image": "https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1601362955/wcwlwmg3ipwxtdjojfzw.jpg", "amount": 10000000, "akhir_waktu": "2022-12-10"}}, {"model": "pedulee.project", "pk": 3, "fields": {"title": "Bantuan untuk Ambon", "description": "Sebanyak 1.135 keluarga yang terdiri atas 4.706 jiwa, menghadapi dampak banjir dan tanah longsor di wilayah Kota Ambon", "link": "https://ambon.antaranews.com/berita/127753/1153-keluarga-terdampak-banjir-dan-tanah-longsor-di-ambon-turut-prihatin", "image": "https://assets.pikiran-rakyat.com/crop/0x0:0x0/x/photo/2022/07/12/1674672637.jpeg", "amount": 50000000, "akhir_waktu": "2022-11-24"}}, {"model": "pedulee.project", "pk": 2, "fields": {"title": "Halmahera Barat Terguncang", "description": "Terjadi gempa bumi berkekuatan 5.9 M pada kedalaman 10 km di Kabupaten Halmahera Barat", "link": "https://pusatkrisis.kemkes.go.id/Gempa-Bumi-di-HALMAHERA-BARAT-MALUKU-UTARA-14-08-2022-73", "image": "https://pusatkrisis.kemkes.go.id/__asset/__images/content/65gempa%20bumi%20halmahera%20barat,%2006-12-2017.jpg", "amount": 5000000, "akhir_waktu": "2023-02-01"}}, {"model": "pedulee.project", "pk": 4, "fields": {"title": "Musi Rawas Utara Tertiup Angin", "description": "BPBD Sumatera Selatan mencatat 58 rumah warga di Kabupaten Musi Rawas Utara rusak dihantam angin puting beliung", "link": "https://www.gatra.com/news-534824-kebencanaan-angin-puting-beliung-rusak-58-rumah-di-musi-rawas-utara.html", "image": "https://asset.kompas.com/crops/Iyy8npUh_gKc6pW40PS4Xh02cdE=/0x0:0x0/750x500/data/photo/2022/02/01/61f8d613d1413.jpg", "amount": 2000000, "akhir_waktu": "2023-07-17"}}]';
-List<dynamic> list = json.decode(exampleJSON);
+import 'package:provider/provider.dart';
 
 class VolunteerFormPage extends StatefulWidget {
   const VolunteerFormPage({super.key});
@@ -19,10 +17,9 @@ class VolunteerFormPage extends StatefulWidget {
 
 class _VolunteerFormPageState extends State<VolunteerFormPage> {
   final _formKey = GlobalKey<FormState>();
-  Project? selected;
+  DjangoModelItem<Project>? selected;
   String? divisi;
   int amount = 0;
-  Volunteer form = Volunteer(project_id: 0, divisi: "", durasi: 0);
 
   late List<DjangoModelItem<Project>> data;
 
@@ -37,8 +34,84 @@ class _VolunteerFormPageState extends State<VolunteerFormPage> {
   final dropDownDecorator = InputDecoration(
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
       contentPadding: const EdgeInsets.all(10));
+
   @override
   Widget build(BuildContext context) {
+    const postURL = "https://pedulee.up.railway.app/volunteer/create";
+    final request = context.watch<CookieRequest>();
+    void successToast() {
+      // Code here will run if the login succeeded.
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        content: Container(
+          padding: const EdgeInsets.all(10),
+          height: 50,
+          decoration: const BoxDecoration(
+            color: Colors.green,
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+          ),
+          child: const Center(
+            child: Text(
+              "Thank you for your volunteer!",
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      ));
+      // ignore: use_build_context_synchronously
+      // Navigator.pushReplacement(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => VolunteerPage()),
+      // );
+    }
+
+    void errorToast() {
+      // Code here will run if the login failed (wrong username/password).
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        content: Container(
+          padding: const EdgeInsets.all(10),
+          height: 50,
+          decoration: const BoxDecoration(
+            color: Colors.red,
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+          ),
+          child: const Center(
+            child: Text(
+              "Sorry, something went wrong",
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      ));
+    }
+
+    void onSubmit() async {
+      if (_formKey.currentState!.validate()) {
+        try {
+          final response = await request.postJson(
+              postURL,
+              jsonEncode({
+                'project': selected?.pk.toString(),
+                'divisi': divisi,
+              }));
+
+          if (response["status"] == true) {
+            successToast();
+          } else {
+            errorToast();
+          }
+        } catch (e) {
+          errorToast();
+          print(e);
+        }
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Volunteer'),
@@ -57,19 +130,19 @@ class _VolunteerFormPageState extends State<VolunteerFormPage> {
                   decoration: dropDownDecorator,
                   child: ButtonTheme(
                     materialTapTargetSize: MaterialTapTargetSize.padded,
-                    child: DropdownButton<Project>(
+                    child: DropdownButton<DjangoModelItem<Project>>(
                       hint: const Text("Daftar Projek"),
                       isExpanded: true,
                       elevation: 16,
                       underline: DropdownButtonHideUnderline(
                         child: Container(),
                       ),
-                      onChanged: (Project? newValue) {
+                      onChanged: (DjangoModelItem<Project>? newValue) {
                         setState(() {
                           amount = 0;
                           if (newValue != null) {
                             selected = newValue;
-                            amount = newValue.akhir_waktu
+                            amount = newValue.fields.akhir_waktu
                                 .difference(DateTime.now())
                                 .inDays;
                           }
@@ -77,9 +150,9 @@ class _VolunteerFormPageState extends State<VolunteerFormPage> {
                       },
                       value: selected,
                       items: data
-                          .map<DropdownMenuItem<Project>>(
-                            (e) => DropdownMenuItem<Project>(
-                              value: e.fields,
+                          .map<DropdownMenuItem<DjangoModelItem<Project>>>(
+                            (e) => DropdownMenuItem<DjangoModelItem<Project>>(
+                              value: e,
                               child: Text(e.fields.title),
                             ),
                           )
@@ -104,7 +177,7 @@ class _VolunteerFormPageState extends State<VolunteerFormPage> {
                           divisi = newValue!;
                         });
                       },
-                      items: Volunteer.DIVISI_CHOICES
+                      items: volunteer_pkg.Volunteer.DIVISI_CHOICES
                           .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
@@ -136,12 +209,7 @@ class _VolunteerFormPageState extends State<VolunteerFormPage> {
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.blue),
                     ),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        // ListVolunteer.data.add(Volunteer(fullName, email, phoneNumber,
-                        //     amount, paymentMethod, ccNumber));
-                      }
-                    },
+                    onPressed: onSubmit,
                     child: const Text(
                       "Submit",
                       style: TextStyle(color: Colors.white),

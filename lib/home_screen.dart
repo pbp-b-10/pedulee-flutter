@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:pedulee/apps/project/card.dart';
-import 'package:pedulee/models/django_model.dart';
+import 'package:pedulee/models/storage.dart';
 import 'package:pedulee/models/project.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:pedulee/widgets/drawer.dart';
