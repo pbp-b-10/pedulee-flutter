@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-<<<<<<< HEAD
 import 'package:pedulee/apps/project/card.dart';
-import 'package:pedulee/models/storage.dart';
 import 'package:pedulee/models/project.dart';
-import 'package:url_launcher/url_launcher.dart';
-=======
->>>>>>> staging
+import 'package:pedulee/models/storage.dart';
 import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/widgets/footer.dart';
 import 'package:pedulee/widgets/title.dart';
