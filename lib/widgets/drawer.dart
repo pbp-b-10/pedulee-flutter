@@ -6,13 +6,14 @@ import 'package:pedulee/login_page.dart';
 import 'package:pedulee/home_screen.dart';
 import 'package:pedulee/apps/money/pages/money.dart';
 import 'package:pedulee/apps/blood/pages/blood.dart';
+import 'package:pedulee/apps/money/pages/money_history.dart';
 import 'package:pedulee/apps/cloth/pages/cloth_history.dart';
 import 'package:pedulee/apps/cloth/pages/cloth_form.dart';
 import 'package:provider/provider.dart';
 import 'package:pedulee/apps/helper/session.dart';
+
 import 'package:pedulee/apps/grocery/pages/grocery_page.dart';
 import 'package:pedulee/apps/grocery/pages/grocery_history.dart';
-
 
 import '../apps/volunteer/form.dart';
 import '../apps/volunteer/history.dart';
@@ -75,13 +76,24 @@ Drawer drawerBuild(BuildContext context) {
             title: const Text("Donation"),
             children: <Widget>[
               ListTile(
-                title: const Text('Money'),
+                title: const Text('Donate Money'),
                 onTap: () {
                   // Route menu ke counter
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const MoneyDonationPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('Money History'),
+                onTap: () {
+                  // Route menu ke counter
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MoneyHistoryPage()),
                   );
                 },
               ),
@@ -93,7 +105,8 @@ Drawer drawerBuild(BuildContext context) {
               onTap: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const GroceryDonationPage()),
+                  MaterialPageRoute(
+                      builder: (context) => const GroceryDonationPage()),
                 );
               },
             ),
@@ -107,8 +120,7 @@ Drawer drawerBuild(BuildContext context) {
               },
             ),
           ]),
-
-                    ExpansionTile(title: Text("Clothes"), children: [
+          ExpansionTile(title: Text("Clothes"), children: [
             ListTile(
               title: Text("Add Clothes"),
               onTap: () {
@@ -144,7 +156,8 @@ Drawer drawerBuild(BuildContext context) {
               onTap: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const HistoryBloodPage()),
+                  MaterialPageRoute(
+                      builder: (context) => const HistoryBloodPage()),
                 );
               },
             ),
