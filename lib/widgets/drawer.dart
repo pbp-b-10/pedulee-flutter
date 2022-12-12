@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pedulee/apps/volunteer/form.dart';
+import 'package:pedulee/apps/volunteer/history.dart';
 import 'package:pedulee/home_screen.dart';
 import 'package:pedulee/apps/money/pages/money.dart';
 import 'package:pedulee/projects_screen.dart';
@@ -9,7 +10,7 @@ import 'package:pedulee/apps/money/pages/money.dart';
 import 'package:pedulee/apps/cloth/pages/cloth_history.dart';
 import 'package:pedulee/apps/cloth/pages/cloth_form.dart';
 import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:pedulee/apps/helper/session.dart';
 
 Drawer drawerBuild(BuildContext context) {
   final request = context.watch<CookieRequest>();
@@ -42,17 +43,28 @@ Drawer drawerBuild(BuildContext context) {
             },
           ),
           // Menambahkan clickable menu
-          ListTile(
-            title: const Text('Volunteer'),
-            onTap: () {
-              // Route menu ke counter
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const VolunteerFormPage()),
-              );
-            },
-          ),
+          ExpansionTile(title: const Text("Volunteer"), children: [
+            ListTile(
+              title: const Text('Participate'),
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const VolunteerFormPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text("Volunteer History"),
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const VolunteerPage()),
+                );
+              },
+            ),
+          ]),
           ExpansionTile(
             title: const Text("Donation"),
             children: <Widget>[
