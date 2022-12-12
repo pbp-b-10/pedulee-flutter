@@ -4,8 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:pedulee/apps/helper/session.dart';
 import 'package:pedulee/login_page.dart';
 
-import 'home_screen.dart';
-
 void main() {
   runApp(const MyApp());
 }

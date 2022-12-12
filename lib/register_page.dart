@@ -1,5 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
-import 'package:pedulee/main.dart';
 import 'package:provider/provider.dart';
 import 'package:pedulee/apps/helper/session.dart';
 import 'package:pedulee/login_page.dart';
@@ -9,11 +10,10 @@ class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  RegisterPageState createState() => RegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
-  final _formKey = GlobalKey<FormState>();
+class RegisterPageState extends State<RegisterPage> {
   bool isPasswordVisible = false;
   void togglePasswordView() {
     setState(() {
@@ -112,7 +112,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10.0),
+                          const SizedBox(height: 10.0),
                           SizedBox(
                             width: 220,
                             height: 55,
@@ -141,7 +141,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10.0),
+                          const SizedBox(height: 10.0),
                           SizedBox(
                             width: 220,
                             height: 55,
@@ -173,7 +173,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10.0),
+                          const SizedBox(height: 10.0),
                           SizedBox(
                             width: 220,
                             height: 55,
@@ -207,10 +207,10 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10.0),
+                          const SizedBox(height: 10.0),
                         ],
                       ),
-                      SizedBox(width: 10.0),
+                      const SizedBox(width: 10.0),
                       Wrap(
                         direction: Axis.vertical,
                         children: [
@@ -247,7 +247,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   ),
                                 ),
                               ),
-                              SizedBox(width: 10.0),
+                              const SizedBox(width: 10.0),
                               SizedBox(
                                 width: 105,
                                 height: 55,
@@ -280,7 +280,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 10.0),
+                          const SizedBox(height: 10.0),
                           SizedBox(
                             width: 220,
                             height: 55,
@@ -311,7 +311,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10.0),
+                          const SizedBox(height: 10.0),
                           SizedBox(
                             width: 220,
                             height: 55,
@@ -354,7 +354,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10.0),
+                          const SizedBox(height: 10.0),
                           SizedBox(
                             width: 220,
                             height: 55,
@@ -385,7 +385,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10.0),
+                          const SizedBox(height: 10.0),
                         ],
                       ),
                     ],
@@ -393,11 +393,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox(height: 10.0),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 170, 196, 255),
+                      backgroundColor: const Color.fromARGB(255, 170, 196, 255),
                       elevation: 3,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(32.0)),
-                      minimumSize: Size(120, 50),
+                      minimumSize: const Size(120, 50),
                     ),
                     child: const Text(
                       'Register',
@@ -442,7 +442,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         // ignore: use_build_context_synchronously
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
+                          MaterialPageRoute(builder: (context) => const LoginPage()),
                         );
                       } else {
                         // Code here will run if the login failed (wrong username/password).
@@ -472,7 +472,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(height: 10.0),
+                      const SizedBox(height: 10.0),
                       const Text(
                         "Already have an account?",
                         style: TextStyle(fontSize: 20),
@@ -482,7 +482,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => LoginPage()),
+                                builder: (context) => const LoginPage()),
                           );
                         },
                         child: const Text(

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:pedulee/apps/helper/session.dart';
 import 'package:provider/provider.dart';
@@ -10,11 +12,11 @@ class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  LoginPageState createState() => LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final _loginFormKey = GlobalKey<FormState>();
+class LoginPageState extends State<LoginPage> {
+  // final _loginFormKey = GlobalKey<FormState>();
   bool isPasswordVisible = false;
   void togglePasswordView() {
     setState(() {
@@ -97,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20.0),
+                    const SizedBox(height: 20.0),
                     SizedBox(
                       width: 400,
                       child: TextFormField(
@@ -132,11 +134,11 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 170, 196, 255),
+                    backgroundColor: const Color.fromARGB(255, 170, 196, 255),
                     elevation: 3,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(32.0)),
-                    minimumSize: Size(120, 50),
+                    minimumSize: const Size(120, 50),
                   ),
                   child: const Text(
                     'Login',
@@ -210,7 +212,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RegisterPage()),
+                              builder: (context) => const RegisterPage()),
                         );
                       },
                       child: const Text(

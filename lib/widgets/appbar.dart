@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:pedulee/widgets/title.dart';
 
 AppBar appBarWidget() {
   return AppBar(
-    backgroundColor: Color.fromARGB(255, 252, 243, 229),
+    backgroundColor: const Color.fromARGB(255, 252, 243, 229),
     title: Image.asset(
       'assets/logo.png',
       scale: 2.5,
     ),
-    iconTheme: IconThemeData(color: Colors.black),
+    iconTheme: const IconThemeData(color: Colors.black),
 
     centerTitle: true,
   );

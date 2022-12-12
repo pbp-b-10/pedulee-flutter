@@ -2,7 +2,6 @@
 //
 //     final cloth = clothFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 List<Cloth> clothFromJson(String str) => List<Cloth>.from(json.decode(str).map((x) => Cloth.fromJson(x)));

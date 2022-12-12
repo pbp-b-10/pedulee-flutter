@@ -1,7 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/widgets/appbar.dart';
-import 'package:pedulee/widgets/footer.dart';
 import 'package:provider/provider.dart';
 import 'package:pedulee/apps/helper/session.dart';
 import 'dart:convert' as convert;
@@ -10,12 +11,10 @@ class ClothFormPage extends StatefulWidget {
   const ClothFormPage({Key? key}) : super(key: key);
 
   @override
-  _ClothFormPageState createState() => _ClothFormPageState();
+  ClothFormPageState createState() => ClothFormPageState();
 }
 
-class _ClothFormPageState extends State<ClothFormPage> {
-  final _formKey = GlobalKey<FormState>();
-
+class ClothFormPageState extends State<ClothFormPage> {
   String model = 'Kemeja';
   List<String> listModel = [
     'Kemeja',
@@ -108,7 +107,8 @@ class _ClothFormPageState extends State<ClothFormPage> {
                                   width: 2),
                             ),
                           ),
-                          dropdownColor: Color.fromARGB(255, 238, 241, 255),
+                          dropdownColor:
+                              const Color.fromARGB(255, 238, 241, 255),
                           value: model,
                           icon: const Icon(Icons.arrow_drop_down),
                           items: listModel.map((String items) {
@@ -144,7 +144,8 @@ class _ClothFormPageState extends State<ClothFormPage> {
                                   width: 2),
                             ),
                           ),
-                          dropdownColor: Color.fromARGB(255, 238, 241, 255),
+                          dropdownColor:
+                              const Color.fromARGB(255, 238, 241, 255),
                           value: material,
                           icon: const Icon(Icons.arrow_drop_down),
                           items: listMaterial.map((String items) {
@@ -180,7 +181,8 @@ class _ClothFormPageState extends State<ClothFormPage> {
                                   width: 2),
                             ),
                           ),
-                          dropdownColor: Color.fromARGB(255, 238, 241, 255),
+                          dropdownColor:
+                              const Color.fromARGB(255, 238, 241, 255),
                           value: tipe,
                           icon: const Icon(Icons.arrow_drop_down),
                           items: listTipe.map((String items) {
@@ -201,11 +203,11 @@ class _ClothFormPageState extends State<ClothFormPage> {
                   const SizedBox(height: 10.0),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 170, 196, 255),
+                      backgroundColor: const Color.fromARGB(255, 170, 196, 255),
                       elevation: 3,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(32.0)),
-                      minimumSize: Size(120, 50),
+                      minimumSize: const Size(120, 50),
                     ),
                     child: const Text(
                       'Submit',
@@ -246,7 +248,7 @@ class _ClothFormPageState extends State<ClothFormPage> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ClothFormPage()),
+                              builder: (context) => const ClothFormPage()),
                         );
                       } else {
                         // Code here will run if the login failed (wrong username/password).

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:pedulee/apps/volunteer/form.dart';
 import 'package:pedulee/apps/volunteer/history.dart';

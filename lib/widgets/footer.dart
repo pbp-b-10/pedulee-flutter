@@ -21,7 +21,7 @@ Column footerWidget() => Column(
     const SizedBox(
       height: 30,
     ),
-    Text('Proyek Akhir Semester PBP B-10'),
+    const Text('Proyek Akhir Semester PBP B-10'),
     const SizedBox(
       height: 30,
     ),
@@ -29,7 +29,7 @@ Column footerWidget() => Column(
     const SizedBox(
       height: 20,
     ),
-    Center(
+    const Center(
       child: Text(
           'Alvin Widi Nugroho \nDaffa Muhammad Faizan \nGhayda Rafa Hernawan \nMarietha Asnat Nauli Sitompul \nRakhan Yusuf Rivesa'),
     ),
