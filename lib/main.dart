@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pedulee/widgets/drawer.dart';
 import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:pedulee/apps/helper/session.dart';
 import 'package:pedulee/login_page.dart';
 
 void main() {
@@ -9,29 +9,28 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-    const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
-    @override
-    Widget build(BuildContext context) {
-        return Provider(
-            create: (_) {
-                CookieRequest request = CookieRequest();
-                return request;
-            },
-            child: MaterialApp(
-              debugShowCheckedModeBanner: false,
-                title: 'Pedulee',
-                theme: ThemeData(
-                    primarySwatch: Colors.blue,
-                ),
-                home: const LoginPage(),
-                routes: {
-                    "/login": (BuildContext context) => const LoginPage(),
-                },
-            ),
-        );
-    }
-  
+  @override
+  Widget build(BuildContext context) {
+    return Provider(
+      create: (_) {
+        CookieRequest request = CookieRequest();
+        return request;
+      },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Pedulee',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const LoginPage(),
+        routes: {
+          "/login": (BuildContext context) => const LoginPage(),
+        },
+      ),
+    );
+  }
 }
 
 class MyHomePage extends StatefulWidget {

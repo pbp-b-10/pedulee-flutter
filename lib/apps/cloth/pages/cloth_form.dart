@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/widgets/appbar.dart';
 import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:pedulee/apps/helper/session.dart';
 import 'dart:convert' as convert;
 
 class ClothFormPage extends StatefulWidget {
@@ -15,7 +15,6 @@ class ClothFormPage extends StatefulWidget {
 }
 
 class ClothFormPageState extends State<ClothFormPage> {
-
   String model = 'Kemeja';
   List<String> listModel = [
     'Kemeja',
@@ -108,7 +107,8 @@ class ClothFormPageState extends State<ClothFormPage> {
                                   width: 2),
                             ),
                           ),
-                          dropdownColor: const Color.fromARGB(255, 238, 241, 255),
+                          dropdownColor:
+                              const Color.fromARGB(255, 238, 241, 255),
                           value: model,
                           icon: const Icon(Icons.arrow_drop_down),
                           items: listModel.map((String items) {
@@ -144,7 +144,8 @@ class ClothFormPageState extends State<ClothFormPage> {
                                   width: 2),
                             ),
                           ),
-                          dropdownColor: const Color.fromARGB(255, 238, 241, 255),
+                          dropdownColor:
+                              const Color.fromARGB(255, 238, 241, 255),
                           value: material,
                           icon: const Icon(Icons.arrow_drop_down),
                           items: listMaterial.map((String items) {
@@ -180,7 +181,8 @@ class ClothFormPageState extends State<ClothFormPage> {
                                   width: 2),
                             ),
                           ),
-                          dropdownColor: const Color.fromARGB(255, 238, 241, 255),
+                          dropdownColor:
+                              const Color.fromARGB(255, 238, 241, 255),
                           value: tipe,
                           icon: const Icon(Icons.arrow_drop_down),
                           items: listTipe.map((String items) {
@@ -212,65 +214,65 @@ class ClothFormPageState extends State<ClothFormPage> {
                       style: TextStyle(fontSize: 20),
                     ),
                     onPressed: () async {
-                        final response = await request.postJson(
-                            "https://pedulee.up.railway.app/cloth/create-flutter",
-                            convert.jsonEncode({
-                              'model': model.toString(),
-                              'material': material.toString(),
-                              'tipe': tipe.toString(),
-                            }));
+                      final response = await request.postJson(
+                          "https://pedulee.up.railway.app/cloth/create-flutter",
+                          convert.jsonEncode({
+                            'model': model.toString(),
+                            'material': material.toString(),
+                            'tipe': tipe.toString(),
+                          }));
 
-                        if (response["status"] == true) {
-                          // Code here will run if the login succeeded.
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            behavior: SnackBarBehavior.floating,
-                            backgroundColor: Colors.transparent,
-                            elevation: 0,
-                            content: Container(
-                              padding: const EdgeInsets.all(10),
-                              height: 50,
-                              decoration: const BoxDecoration(
-                                color: Colors.green,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  "Thank you for your donation!",
-                                  textAlign: TextAlign.center,
-                                ),
+                      if (response["status"] == true) {
+                        // Code here will run if the login succeeded.
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.transparent,
+                          elevation: 0,
+                          content: Container(
+                            padding: const EdgeInsets.all(10),
+                            height: 50,
+                            decoration: const BoxDecoration(
+                              color: Colors.green,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: const Center(
+                              child: Text(
+                                "Thank you for your donation!",
+                                textAlign: TextAlign.center,
                               ),
                             ),
-                          ));
-                          // ignore: use_build_context_synchronously
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ClothFormPage()),
-                          );
-                        } else {
-                          // Code here will run if the login failed (wrong username/password).
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            behavior: SnackBarBehavior.floating,
-                            backgroundColor: Colors.transparent,
-                            elevation: 0,
-                            content: Container(
-                              padding: const EdgeInsets.all(10),
-                              height: 50,
-                              decoration: const BoxDecoration(
-                                color: Colors.red,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  "Sorry, something went wrong",
-                                  textAlign: TextAlign.center,
-                                ),
+                          ),
+                        ));
+                        // ignore: use_build_context_synchronously
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ClothFormPage()),
+                        );
+                      } else {
+                        // Code here will run if the login failed (wrong username/password).
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.transparent,
+                          elevation: 0,
+                          content: Container(
+                            padding: const EdgeInsets.all(10),
+                            height: 50,
+                            decoration: const BoxDecoration(
+                              color: Colors.red,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: const Center(
+                              child: Text(
+                                "Sorry, something went wrong",
+                                textAlign: TextAlign.center,
                               ),
                             ),
-                          ));
-                        }
+                          ),
+                        ));
+                      }
                     },
                   ),
                 ],
