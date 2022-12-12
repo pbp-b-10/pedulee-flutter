@@ -1,0 +1,28 @@
+^C:\USERS\DAFFA\DESKTOP\UNIVERSITY\PROJECTS\FLUTTER\PEDULEE\PEDULEE-MOBILE\BUILD\WINDOWS\CMAKEFILES\B9E8FAED655E24EEE2B00C2ADAA6C4BD\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\src\flutter PROJECT_DIR=C:\Users\Daffa\Desktop\University\Projects\Flutter\pedulee\pedulee-mobile FLUTTER_ROOT=C:\src\flutter FLUTTER_EPHEMERAL_DIR=C:\Users\Daffa\Desktop\University\Projects\Flutter\pedulee\pedulee-mobile\windows\flutter\ephemeral PROJECT_DIR=C:\Users\Daffa\Desktop\University\Projects\Flutter\pedulee\pedulee-mobile FLUTTER_TARGET=C:\Users\Daffa\Desktop\University\Projects\Flutter\pedulee\pedulee-mobile\lib\main.dart DART_DEFINES=RkxVVFRFUl9XRUJfQVVUT19ERVRFQ1Q9dHJ1ZQ== DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=C:\Users\Daffa\Desktop\University\Projects\Flutter\pedulee\pedulee-mobile\.dart_tool\package_config.json C:/src/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DAFFA\DESKTOP\UNIVERSITY\PROJECTS\FLUTTER\PEDULEE\PEDULEE-MOBILE\BUILD\WINDOWS\CMAKEFILES\F7B7D1D8F7D460F11EBE76E613DF733F\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DAFFA\DESKTOP\UNIVERSITY\PROJECTS\FLUTTER\PEDULEE\PEDULEE-MOBILE\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/Daffa/Desktop/University/Projects/Flutter/pedulee/pedulee-mobile/windows -BC:/Users/Daffa/Desktop/University/Projects/Flutter/pedulee/pedulee-mobile/build/windows --check-stamp-file C:/Users/Daffa/Desktop/University/Projects/Flutter/pedulee/pedulee-mobile/build/windows/flutter/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

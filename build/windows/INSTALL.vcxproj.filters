@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Daffa\Desktop\University\Projects\Flutter\pedulee\pedulee-mobile\build\windows\CMakeFiles\a60b5fae0a962a93d62d84e074bf31a1\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{7B28E52B-67E6-388A-B985-3744C5AE1726}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

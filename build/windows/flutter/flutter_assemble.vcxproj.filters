@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Daffa\Desktop\University\Projects\Flutter\pedulee\pedulee-mobile\build\windows\CMakeFiles\b9e8faed655e24eee2b00c2adaa6c4bd\flutter_windows.dll.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Daffa\Desktop\University\Projects\Flutter\pedulee\pedulee-mobile\build\windows\CMakeFiles\f7b7d1d8f7d460f11ebe76e613df733f\flutter_assemble.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Daffa\Desktop\University\Projects\Flutter\pedulee\pedulee-mobile\windows\flutter\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\Daffa\Desktop\University\Projects\Flutter\pedulee\pedulee-mobile\build\windows\flutter\CMakeFiles\flutter_assemble" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{7B28E52B-67E6-388A-B985-3744C5AE1726}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

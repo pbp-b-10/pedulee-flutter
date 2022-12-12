@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pedulee/apps/money/models/money_models.dart';
+import 'package:pedulee/apps/helper/session.dart';
+import 'dart:convert' as convert;
+import 'package:provider/provider.dart';
 
+import 'package:pedulee/apps/money/models/money_models.dart';
 import 'package:pedulee/widgets/footer.dart';
 import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/widgets/appbar.dart';
@@ -19,10 +22,12 @@ class _MoneyDonationPageState extends State<MoneyDonationPage> {
     int? phoneNumber = 0;
     int? amount = 0;
     String? paymentMethod;
+    String message = "";
     int? ccNumber = 0;
 
     @override
     Widget build(BuildContext context) {
+        final request = context.watch<CookieRequest>();
         return Scaffold(
             appBar: appBarWidget(),
             // Menambahkan drawer menu
@@ -184,6 +189,39 @@ class _MoneyDonationPageState extends State<MoneyDonationPage> {
                                 },
                             ),
                           ),
+                          Padding(
+                            // Menggunakan padding sebesar 8 pixels
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                                decoration: InputDecoration(
+                                    hintText: "Good messages pls :)",
+                                    labelText: "Donation Message",
+                                    // Menambahkan circular border agar lebih rapi
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                ),
+                                // Menambahkan behavior saat nama diketik 
+                                onChanged: (String? value) {
+                                    setState(() {
+                                        message = value!;
+                                    });
+                                },
+                                // Menambahkan behavior saat data disimpan
+                                onSaved: (String? value) {
+                                    setState(() {
+                                        message = value!;
+                                    });
+                                },
+                                // Validator sebagai validasi form
+                                validator: (String? value) {
+                                    if (value == null || value.isEmpty) {
+                                        return "Donation message can't be empty!";
+                                    }
+                                    return null;
+                                },
+                            ),
+                          ),
                           Padding( // https://stackoverflow.com/a/69424783
                             padding: const EdgeInsets.all(8.0),
                             child: InputDecorator(
@@ -274,10 +312,21 @@ class _MoneyDonationPageState extends State<MoneyDonationPage> {
                           FloatingActionButton.extended(
                             label: const Text('Submit'),
                             backgroundColor: Colors.lightBlue,
-                            onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  ListMoney.data.add(Money(fullName, email, phoneNumber, amount, paymentMethod, ccNumber));
-                                }
+                            onPressed: () async {
+                                // if (_formKey.currentState!.validate()) {
+                                //   ListMoney.data.add(Money(fullName, email, phoneNumber, amount, paymentMethod, ccNumber));
+                                // }
+                                final response = await request.postJson(
+                                "https://pedulee.up.railway.app/money/create",
+                                convert.jsonEncode({
+                                  'fullName': fullName.toString(),
+                                  'email': email.toString(),
+                                  'phoneNumber': phoneNumber.toString(),
+                                  'amount': amount.toString(),
+                                  'message': message.toString(),
+                                  'paymentMethod': paymentMethod.toString(),
+                                  'ccNumber': ccNumber.toString(),
+                                }));
                             },
                           ),
                           footerWidget(),
