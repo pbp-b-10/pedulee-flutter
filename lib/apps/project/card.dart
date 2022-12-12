@@ -31,15 +31,7 @@ class ProjectCard extends StatelessWidget {
     } else {
       throw "Could not launch $url";
     }
-
-  void onClickMoreInfo() async {
-    if (await canLaunchUrlString(url)) {
-      await launchUrlString(url);
-    } else {
-      throw "Could not launch $url";
-    }
   }
-
 
   @override
   Widget build(BuildContext context) {
