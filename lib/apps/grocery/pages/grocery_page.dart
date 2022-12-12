@@ -1,3 +1,5 @@
+// ignore_for_file: sort_child_properties_last
+
 import 'package:flutter/material.dart';
 import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/apps/grocery/models/grocery_model.dart';
