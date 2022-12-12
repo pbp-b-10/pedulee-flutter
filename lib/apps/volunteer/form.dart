@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:pedulee/apps/helper/session.dart';
+import 'package:pedulee/apps/volunteer/history.dart';
 import 'package:pedulee/models/storage.dart';
 import 'package:pedulee/models/project.dart';
 import 'package:pedulee/models/volunteer.dart' as volunteer_pkg;
@@ -61,10 +62,10 @@ class _VolunteerFormPageState extends State<VolunteerFormPage> {
         ),
       ));
       // ignore: use_build_context_synchronously
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => VolunteerPage()),
-      // );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const VolunteerPage()),
+      );
     }
 
     void errorToast() {
