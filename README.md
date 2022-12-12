@@ -1,3 +1,5 @@
+[![Build status](https://build.appcenter.ms/v0.1/apps/c5a293b8-a19c-4243-b916-2e50c218c805/branches/main/badge)](https://appcenter.ms)
+
 # PEDULEE - B10
 Ghayda Rafa Hernawan - 2106634332 <br />
 Daffa Muhammad Faizan - 2106704156 <br />
