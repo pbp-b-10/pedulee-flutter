@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:pedulee/widgets/drawer.dart';
+import 'package:pedulee/widgets/footer.dart';
+import 'package:pedulee/widgets/card.dart';
+import 'package:pedulee/widgets/title.dart';
+import 'package:pedulee/widgets/appbar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,6 +25,7 @@ class HomeScreen extends StatelessWidget {
       children: [
         SizedBox(
           height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           child: Image.asset(
             'assets/bg.jpg',
             fit: BoxFit.fill, //agar rounded corner imagenya
@@ -44,111 +49,34 @@ class HomeScreen extends StatelessWidget {
                 title: 'Air untuk Jayapura',
                 content:
                     'Debit air dari sejumlah mata air di Kota Jayapura turun drastis hingga lebih dari 50 persen',
-                imagePath: 'assets/wcwlwmg3ipwxtdjojfzw.jpg'),
+                imagePath: 'assets/wcwlwmg3ipwxtdjojfzw.jpg',
+                url:
+                    'https://www.kompas.id/baca/nusantara/2020/09/10/kota-jayapura-terancam-krisis-air-bersih'),
             cardWidget(
                 title: 'Bantuan untuk Ambon',
                 content:
                     'Sebanyak 1.135 keluarga yang terdiri atas 4.706 jiwa, menghadapi dampak banjir dan tanah longsor di wilayah Kota Ambon',
-                imagePath: 'assets/61f8d613d1413.jpg'),
+                imagePath: 'assets/61f8d613d1413.jpg',
+                url:
+                    'https://ambon.antaranews.com/berita/127753/1153-keluarga-terdampak-banjir-dan-tanah-longsor-di-ambon-turut-prihatin'),
             cardWidget(
                 title: 'Halmahera Barat Terguncang',
                 content:
                     'Terjadi gempa bumi berkekuatan 5.9 M pada kedalaman 10 km di Kabupaten Halmahera Barat',
-                imagePath: 'assets/1674672637.jpeg'),
+                imagePath: 'assets/1674672637.jpeg',
+                url:
+                    'https://pusatkrisis.kemkes.go.id/Gempa-Bumi-di-HALMAHERA-BARAT-MALUKU-UTARA-14-08-2022-73'),
             cardWidget(
                 title: 'Musi Rawas Utara Tertiup Angin',
                 content:
                     'BPBD Sumatera Selatan mencatat 58 rumah warga di Kabupaten Musi Rawas Utara rusak dihantam angin puting beliung',
-                imagePath: 'assets/kfbdhjbgragjkre.jpg'),
+                imagePath: 'assets/kfbdhjbgragjkre.jpg',
+                url:
+                    'https://www.gatra.com/news-534824-kebencanaan-angin-puting-beliung-rusak-58-rumah-di-musi-rawas-utara.html'),
             footerWidget()
           ],
         ),
       ],
-    );
-  }
-
-  Column footerWidget() => Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(
-            height: 30,
-          ),
-          const Divider(
-            color: Colors.black54,
-            thickness: 1,
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          titleWidget('Pedulee'),
-          const SizedBox(
-            height: 20,
-          ),
-          Text('Proyek Tengah Semester PBP B-10'),
-          const SizedBox(
-            height: 30,
-          ),
-          titleWidget('Contributors'),
-          const SizedBox(
-            height: 20,
-          ),
-          Center(
-            child: Text(
-                'Alvin Widi Nugroho \nDaffa Muhammad Faizan \nGhayda Rafa Hernawan \nMarietha Asnat Nauli Sitompul \nRakhan Yusuf Rivesa'),
-          )
-        ],
-      );
-
-  Widget cardWidget(
-      {required String title,
-      required String content,
-      required String imagePath}) {
-    return Padding(
-      padding: const EdgeInsets.all(30),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(30),
-        child: Container(
-          decoration: BoxDecoration(color: Colors.white.withOpacity(0.5)),
-          child: Column(
-            children: [
-              Image.asset(
-                imagePath,
-                fit: BoxFit.fill,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 30,
-                ),
-                child: titleWidget(title),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(30),
-                child: Text(
-                  content,
-                  style: const TextStyle(fontSize: 18),
-                ),
-              ),
-              ElevatedButton(onPressed: () {}, child: const Text('More Info')),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  AppBar appBarWidget() {
-    return AppBar(
-      backgroundColor: Colors.orangeAccent.shade100.withOpacity(0.5),
-      title: titleWidget('Pedulee'),
-      centerTitle: true,
-    );
-  }
-
-  Widget titleWidget(String s) {
-    return Text(
-      s,
-      style: const TextStyle(
-          color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
     );
   }
 }
