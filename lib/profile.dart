@@ -23,7 +23,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
  Future<List<Profile>> fetchGrocery() async {
-        var url = Uri.parse('https://pedulee.up.railway.app/history/api/groceries/');
+        var url = Uri.parse('https://pedulee.up.railway.app/profile/');
         var response = await http.get(
         url,
         headers: {
