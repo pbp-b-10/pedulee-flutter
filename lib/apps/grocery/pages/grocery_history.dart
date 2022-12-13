@@ -52,7 +52,7 @@ class GroceryPageState extends State<GroceryPage> {
                               padding: const EdgeInsets.all(10),
                               child: ListTile(
                                 title: Text(
-                                  "${snapshot.data![index].fields.sembako}",
+                                  "${snapshot.data![index].fields.address}",
                                   style: const TextStyle(
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.bold,

@@ -83,7 +83,6 @@ class Fields{
       "pmethod": pmethod,
       // "tanggal": tanggal,
       "tanggal": "${tanggal.year.toString().padLeft(4, '0')}-${tanggal.month.toString().padLeft(2, '0')}-${tanggal.day.toString().padLeft(2, '0')}",
-
       "ccnumber": ccnumber
 
   };
