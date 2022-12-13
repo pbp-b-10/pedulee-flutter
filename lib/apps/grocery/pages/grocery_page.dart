@@ -1,11 +1,11 @@
 // ignore_for_file: sort_child_properties_last
-
+import 'package:pedulee/apps/helper/session.dart';
 import 'package:flutter/material.dart';
 import 'package:pedulee/widgets/drawer.dart';
 import 'package:pedulee/apps/grocery/models/grocery_model.dart';
 import 'package:pedulee/widgets/appbar.dart';
 import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+// import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:pedulee/apps/grocery/pages/grocery_history.dart';
 import 'dart:convert' as convert;
 
@@ -35,8 +35,8 @@ class _GroceryDonationPageState extends State<GroceryDonationPage> {
 
     @override
     Widget build(BuildContext context) {
+        // final request = context.watch<CookieRequest>();
         final request = context.watch<CookieRequest>();
-
         return Scaffold(
             appBar: appBarWidget(),
             // Menambahkan drawer menu
@@ -180,6 +180,39 @@ class _GroceryDonationPageState extends State<GroceryDonationPage> {
                         return null;
                       },
                     ),
+                    Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                        decoration: InputDecoration(
+                            hintText: "Credit Card Number",
+                            labelText: "Masukkan CC Number",
+                            // Menambahkan circular border agar lebih rapi
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                            ),
+                        ),
+                        // Menambahkan behavior saat nama diketik 
+                        onChanged: (value) {
+                            setState(() {
+                                _ccNumber = int.parse(value);
+                            });
+                        },
+                        // Menambahkan behavior saat data disimpan
+                        onSaved: (value) {
+                            setState(() {
+                                _ccNumber = int.parse(value!);
+                            });
+                        },
+                        // Validator sebagai validasi form
+                          // Validator sebagai validasi form
+                        validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                                return 'Masukkan CC Number';
+                            }
+                            return null;
+                        },
+                      ),
+                    ),
 
                     TextButton(
                       child: const Text(
@@ -187,10 +220,10 @@ class _GroceryDonationPageState extends State<GroceryDonationPage> {
                         style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                       ),
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 243, 201, 33)),
+                        backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 225, 54, 16)),
                       ),
                       onPressed: () async {
-                        final response = await request.postJson(
+                        final response = await request.postForm(
                           "https://pedulee.up.railway.app/groceries/create",
                           convert.jsonEncode({
                             'donasi': _donasi.toString(), 
@@ -201,13 +234,13 @@ class _GroceryDonationPageState extends State<GroceryDonationPage> {
                             'ccnumber': _ccNumber.toString(),
                           })
                         );
-                        // Navigator.pushReplacement(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) => const GroceryDonationPage()),
-                        // );
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const GroceryDonationPage()),
+                        );
                         
-                      if (response["status"] == true) {
+                      if (response== 201) {
                         // Code here will run if the login succeeded.
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           behavior: SnackBarBehavior.floating,

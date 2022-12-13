@@ -8,9 +8,9 @@ import 'dart:convert';
 
 
 
-List<Grocery> watchListFromJson(String str) => List<Grocery>.from(json.decode(str).map((x) => Grocery.fromJson(x)));
+List<Grocery> groceryFromJson(String str) => List<Grocery>.from(json.decode(str).map((x) => Grocery.fromJson(x)));
 
-String watchListToJson(List<Grocery> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String groceryToJson(List<Grocery> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Grocery {
     Grocery({
@@ -26,7 +26,7 @@ class Grocery {
     factory Grocery.fromJson(Map<String, dynamic> json) => Grocery(
         model: json["model"],
         pk: json["pk"],
-        fields: json["fields"],
+        fields: Fields.fromJson(json["fields"]),
     );
 
     Map<String, dynamic> toJson() => {
