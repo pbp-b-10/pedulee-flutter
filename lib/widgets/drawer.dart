@@ -9,6 +9,7 @@ import 'package:pedulee/apps/blood/pages/blood.dart';
 import 'package:pedulee/apps/money/pages/money_history.dart';
 import 'package:pedulee/apps/cloth/pages/cloth_history.dart';
 import 'package:pedulee/apps/cloth/pages/cloth_form.dart';
+import 'package:pedulee/profile.dart';
 import 'package:provider/provider.dart';
 import 'package:pedulee/apps/helper/session.dart';
 
@@ -35,6 +36,18 @@ Drawer drawerBuild(BuildContext context) {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const HomeScreen()),
+              );
+            },
+          ),
+          // Menambahkan clickable menu
+          ListTile(
+            title: const Text('Profile'),
+            //hoverColor: const Color.fromARGB(255, 248, 226, 190),
+            onTap: () {
+              // Route menu ke counter
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfilePage()),
               );
             },
           ),
